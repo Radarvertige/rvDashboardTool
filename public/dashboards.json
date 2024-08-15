@@ -1,0 +1,18 @@
+[
+    {
+      "name": "Dashboard 1",
+      "url": "https://dashboard1.example.com",
+      "key": "dashboard1"
+    },
+    {
+      "name": "Dashboard 2",
+      "url": "https://dashboard2.example.com",
+      "key": "dashboard2"
+    },
+    {
+      "name": "Dashboard 3",
+      "url": "https://dashboard3.example.com",
+      "key": "dashboard3"
+    }
+  ]
+  
