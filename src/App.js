@@ -1,94 +1,154 @@
-import React, { useState, useEffect } from "react";
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Select from 'react-select';
+import React, { useState, useEffect } from 'react';
+import { SignJWT } from 'jose';
 
-function App() {
+const JWTGenerator = () => {
+  const [groupNames, setGroupNames] = useState('');
+  const [tokens, setTokens] = useState([]);
   const [dashboards, setDashboards] = useState([]);
-  const [selectedDashboard, setSelectedDashboard] = useState(null);
-  const [groupName, setGroupName] = useState("");
-  const [combinedUrl, setCombinedUrl] = useState("");
+  const [selectedDashboard, setSelectedDashboard] = useState('');
+  const [combinedUrls, setCombinedUrls] = useState([]);
 
+  // Fetch dashboards from dashboards.json
   useEffect(() => {
-    fetch("/dashboards.json")
-      .then(response => response.json())
-      .then(data => setDashboards(data));
+    fetch('/dashboards.json')
+      .then((response) => response.json())
+      .then((data) => setDashboards(data));
   }, []);
 
-  const combineUrlWithGroup = () => {
-    if (selectedDashboard && groupName) {
-      const separator = selectedDashboard.url.includes('?') ? '&' : '?';
-      const finalUrl = `${selectedDashboard.url}${separator}group=${groupName}`;
-      setCombinedUrl(finalUrl);
-    } else {
-      alert("Selecteer een dashboard en voer de groepsnaam in!");
+  const generateTokens = async () => {
+    if (!groupNames || !selectedDashboard) {
+      alert("Voer minstens één groepsnaam in en selecteer een dashboard");
+      return;
     }
+
+    // Vind de geselecteerde dashboardgegevens
+    const dashboard = dashboards.find(d => d.name === selectedDashboard);
+    if (!dashboard) {
+      alert("Geselecteerd dashboard niet gevonden");
+      return;
+    }
+
+    // Converteer de geheime sleutel (dashboard key) naar Uint8Array
+    const secretKey = new TextEncoder().encode(dashboard.key);
+    
+    // Log de geheime sleutel
+    console.log("Secret Key:", dashboard.key);
+
+    // Splits groupNames op komma en trim witruimte
+    const groups = groupNames.split(',').map(name => name.trim());
+
+    // Voorbereiden van arrays om tokens en URLs op te slaan
+    const generatedTokens = [];
+    const generatedUrls = [];
+
+    for (let group of groups) {
+      if (group) {
+        // Maak de JWT payload
+        const payload = {
+          dataModelFilter: [
+            {
+              table: "Groups",
+              column: "Name",
+              datatype: "text",
+              members: [group],
+            },
+          ],
+        };
+
+        // Maak de JWT header
+        const header = { alg: 'HS256', typ: 'JWT' };
+
+        // Genereer het token
+        const token = await new SignJWT(payload)
+          .setProtectedHeader(header)
+          .sign(secretKey);
+
+        // Log het token, header, payload (als string), en key
+        console.log("Token:", token);
+        console.log("Header:", header);
+        console.log("Payload:", JSON.stringify(payload));
+        console.log("Key:", dashboard.key);
+
+        // Maak de gecombineerde URL
+        const dashboardUrl = dashboard.url;
+        const combinedUrl = `${dashboardUrl}${token}`;
+
+        // Sla het token en de URL op
+        generatedTokens.push({ group, token });
+        generatedUrls.push({ group, url: combinedUrl });
+      }
+    }
+
+    // Update de state met gegenereerde tokens en URLs
+    setTokens(generatedTokens);
+    setCombinedUrls(generatedUrls);
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(combinedUrl).then(() => {
-      alert("URL gekopieerd naar het klembord!");
+  const copyToClipboard = (group, url) => {
+    const textToCopy = `Groep: ${group}\nURL: ${url}`;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      alert(`URL en groepsnaam voor ${group} gekopieerd naar klembord!`);
     });
   };
 
   return (
-    <div className="App container mt-5">
-      <header className="App-header text-center">
-        <h1>JWT URL Combiner</h1>
-        <div className="form-group mt-4">
-          <label className="form-label">Selecteer Dashboard:</label>
-          <Select
-            options={dashboards.map(dashboard => ({
-              value: dashboard.key,
-              label: dashboard.name
-            }))}
-            onChange={(selectedOption) => {
-              const selected = dashboards.find(d => d.key === selectedOption.value);
-              setSelectedDashboard(selected);
-            }}
-            classNamePrefix="react-select"
-          />
-        </div>
-        <div className="form-group mt-3">
-          <label className="form-label">Groepsnaam:</label>
-          <input
-            type="text"
-            className="form-control"
-            value={groupName}
-            onChange={(e) => setGroupName(e.target.value)}
-            placeholder="Voer de groepsnaam in"
-          />
-        </div>
-        <button 
-          className="btn btn-primary mt-4"
-          onClick={combineUrlWithGroup}
+    <div className="container mt-5">
+      <h1>JWT Generator</h1>
+      <div className="form-group">
+        <label htmlFor="groupNames">Groepsnamen (komma gescheiden)</label>
+        <small className="form-text text-muted">Voer de namen van de groepen in, gescheiden door komma's.</small>
+        <input
+          type="text"
+          id="groupNames"
+          className="form-control"
+          value={groupNames}
+          onChange={(e) => setGroupNames(e.target.value)}
+          placeholder="Voer groepsnamen in"
+        />
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="dashboard">Selecteer Dashboard</label>
+        <small className="form-text text-muted">Kies een dashboard uit de lijst.</small>
+        <select
+          id="dashboard"
+          className="form-control"
+          value={selectedDashboard}
+          onChange={(e) => setSelectedDashboard(e.target.value)}
         >
-          Combineer URL met Groep
-        </button>
-        {combinedUrl && (
-          <div className="mt-4">
-            <h2>Gecombineerde URL:</h2>
-            <div className="alert alert-success d-flex align-items-center justify-content-between">
+          <option value="">-- Selecteer een Dashboard --</option>
+          {dashboards.map((dashboard) => (
+            <option key={dashboard.name} value={dashboard.name}>
+              {dashboard.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <button className="btn btn-primary mt-3" onClick={generateTokens}>
+        Genereer JWTs
+      </button>
+
+      {combinedUrls.length > 0 && (
+        <div className="mt-4">
+          <h2>Gegenereerde URLs met JWTs:</h2>
+          {combinedUrls.map(({ group, url }) => (
+            <div key={group} className="mb-3">
+              <h4>Groep: {group}</h4>
               <a 
-                href={combinedUrl} 
+                href={url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-white"
+                onClick={() => copyToClipboard(group, url)}
               >
-                {combinedUrl}
+                {url}
               </a>
-              <button 
-                className="btn btn-outline-light btn-sm ml-2" 
-                onClick={copyToClipboard}
-              >
-                Kopieer
-              </button>
             </div>
-          </div>
-        )}
-      </header>
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default App;
+export default JWTGenerator;
