@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { SignJWT } from 'jose';
+import headerImage from './assets/rvlogo.png';
 
-const YOURLS_API_URL = 'http://rdar.nl/yourls-api.php'; // Vervang dit door je YOURLS API URL
-const YOURLS_SIGNATURE = '157448975e'; // Vervang dit door je YOURLS signature token
+// Retrieve YOURLS API URL and Signature from environment variables
+const YOURLS_API_URL = 'https://rdar.nl/yourls-api.php'; // Vervang dit door je YOURLS API URL
+const YOURLS_SIGNATURE = '157448975e';
+
+
+let isDebug = false;
+
+const handleKeyPress = (event) => {
+  if (event.ctrlKey && event.key === 'b') {
+    isDebug = !isDebug;
+    console.log(`Debugging is now ${isDebug ? 'enabled' : 'disabled'}`);
+  }
+};
 
 const JWTGenerator = () => {
   const [groupNames, setGroupNames] = useState('');
@@ -12,12 +24,23 @@ const JWTGenerator = () => {
   const [combinedUrls, setCombinedUrls] = useState([]);
 
   useEffect(() => {
+    // Attach the event listener for the keyboard shortcut
+    window.addEventListener('keydown', handleKeyPress);
+
+    // Fetch dashboards data
     fetch('/dashboards.json')
       .then((response) => response.json())
       .then((data) => setDashboards(data));
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
   }, []);
 
   const generateTokens = async () => {
+    if (isDebug) console.log("Starting token generation");
+
     if (!groupNames || !selectedDashboard) {
       alert("Voer minstens één groepsnaam in en selecteer een dashboard");
       return;
@@ -30,11 +53,12 @@ const JWTGenerator = () => {
     }
 
     const secretKey = new TextEncoder().encode(dashboard.key);
-    console.log("Secret Key:", dashboard.key);
+    if (isDebug) console.log("Secret Key:", dashboard.key);
 
     const groups = groupNames.split(',').map(name => name.trim());
     const generatedTokens = [];
     const generatedUrls = [];
+    let clipboardText = ''; // Variable to store the concatenated text
 
     for (let group of groups) {
       if (group) {
@@ -54,10 +78,10 @@ const JWTGenerator = () => {
           .setProtectedHeader(header)
           .sign(secretKey);
 
-        console.log("Token:", token);
-        console.log("Header:", header);
-        console.log("Payload:", JSON.stringify(payload));
-        console.log("Key:", dashboard.key);
+        if (isDebug) console.log("Token:", token);
+        if (isDebug) console.log("Header:", header);
+        if (isDebug) console.log("Payload:", JSON.stringify(payload));
+        if (isDebug) console.log("Key:", dashboard.key);
 
         const dashboardUrl = dashboard.url;
         const combinedUrl = `${dashboardUrl}${token}`;
@@ -70,7 +94,10 @@ const JWTGenerator = () => {
           generatedTokens.push({ group, token });
           generatedUrls.push({ group, url: shortUrl });
 
-          console.log(`Short URL for ${group}: ${shortUrl}`);
+          if (isDebug) console.log(`Short URL for ${group}: ${shortUrl}`);
+
+          // Add each URL and group name to the clipboardText
+          clipboardText += `Groep: ${group}\nURL: ${shortUrl}\n\n`;
         } catch (error) {
           console.error(`Error shortening URL for ${group}:`, error);
         }
@@ -79,18 +106,19 @@ const JWTGenerator = () => {
 
     setTokens(generatedTokens);
     setCombinedUrls(generatedUrls);
-  };
 
-  const copyToClipboard = (group, url) => {
-    const textToCopy = `Groep: ${group}\nURL: ${url}`;
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      alert(`URL en groepsnaam voor ${group} gekopieerd naar klembord!`);
+    // Copy the concatenated URLs and names to the clipboard
+    navigator.clipboard.writeText(clipboardText).then(() => {
+      alert("Links zijn gekopieerd!");
     });
   };
 
   return (
     <div className="container mt-5">
-      <h1>JWT Generator</h1>
+      {/* Header Image */}
+      <img src={headerImage} alt="Header" className="img-fluid mb-4" />
+
+      <h1>Dashboard link generator</h1>
       <div className="form-group">
         <label htmlFor="groupNames">Groepsnamen (komma gescheiden)</label>
         <small className="form-text text-muted">Voer de namen van de groepen in, gescheiden door komma's.</small>
@@ -123,12 +151,12 @@ const JWTGenerator = () => {
       </div>
 
       <button className="btn btn-primary mt-3" onClick={generateTokens}>
-        Genereer JWTs
+        Genereer link
       </button>
 
       {combinedUrls.length > 0 && (
         <div className="mt-4">
-          <h2>Gegenereerde URLs met JWTs:</h2>
+          <h2>Gegenereerde dashboard link:</h2>
           {combinedUrls.map(({ group, url }) => (
             <div key={group} className="mb-3">
               <h4>Groep: {group}</h4>
@@ -136,7 +164,6 @@ const JWTGenerator = () => {
                 href={url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                onClick={() => copyToClipboard(group, url)}
               >
                 {url}
               </a>
