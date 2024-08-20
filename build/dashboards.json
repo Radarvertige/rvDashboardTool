@@ -1,0 +1,21 @@
+[
+    {
+      "name": "test",
+      "url": "https://insights.learningpool.com/contexts/2080/shared/",
+      "key": "c3172a47-3122-4a7b-8ccd-fbe61771564a",
+      "team":"AW"
+    },
+    {
+      "name": "Dashboard 2",
+      "url": "https://dashboard2.example.com",
+      "key": "dashboard2",
+            "team":"AW"
+    },
+    {
+      "name": "Dashboard 3",
+      "url": "https://dashboard3.example.com",
+      "key": "dashboard3",
+            "team":"AW"
+    }
+  ]
+  

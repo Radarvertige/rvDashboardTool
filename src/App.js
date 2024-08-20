@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { SignJWT } from 'jose';
 
+const YOURLS_API_URL = 'http://rdar.nl/yourls-api.php'; // Vervang dit door je YOURLS API URL
+const YOURLS_SIGNATURE = '157448975e'; // Vervang dit door je YOURLS signature token
+
 const JWTGenerator = () => {
   const [groupNames, setGroupNames] = useState('');
   const [tokens, setTokens] = useState([]);
@@ -8,7 +11,6 @@ const JWTGenerator = () => {
   const [selectedDashboard, setSelectedDashboard] = useState('');
   const [combinedUrls, setCombinedUrls] = useState([]);
 
-  // Fetch dashboards from dashboards.json
   useEffect(() => {
     fetch('/dashboards.json')
       .then((response) => response.json())
@@ -21,29 +23,21 @@ const JWTGenerator = () => {
       return;
     }
 
-    // Vind de geselecteerde dashboardgegevens
     const dashboard = dashboards.find(d => d.name === selectedDashboard);
     if (!dashboard) {
       alert("Geselecteerd dashboard niet gevonden");
       return;
     }
 
-    // Converteer de geheime sleutel (dashboard key) naar Uint8Array
     const secretKey = new TextEncoder().encode(dashboard.key);
-    
-    // Log de geheime sleutel
     console.log("Secret Key:", dashboard.key);
 
-    // Splits groupNames op komma en trim witruimte
     const groups = groupNames.split(',').map(name => name.trim());
-
-    // Voorbereiden van arrays om tokens en URLs op te slaan
     const generatedTokens = [];
     const generatedUrls = [];
 
     for (let group of groups) {
       if (group) {
-        // Maak de JWT payload
         const payload = {
           dataModelFilter: [
             {
@@ -55,31 +49,34 @@ const JWTGenerator = () => {
           ],
         };
 
-        // Maak de JWT header
         const header = { alg: 'HS256', typ: 'JWT' };
-
-        // Genereer het token
         const token = await new SignJWT(payload)
           .setProtectedHeader(header)
           .sign(secretKey);
 
-        // Log het token, header, payload (als string), en key
         console.log("Token:", token);
         console.log("Header:", header);
         console.log("Payload:", JSON.stringify(payload));
         console.log("Key:", dashboard.key);
 
-        // Maak de gecombineerde URL
         const dashboardUrl = dashboard.url;
         const combinedUrl = `${dashboardUrl}${token}`;
 
-        // Sla het token en de URL op
-        generatedTokens.push({ group, token });
-        generatedUrls.push({ group, url: combinedUrl });
+        try {
+          const response = await fetch(`${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=shorturl&format=json&url=${encodeURIComponent(combinedUrl)}`);
+          const data = await response.json();
+          const shortUrl = data.shorturl;
+
+          generatedTokens.push({ group, token });
+          generatedUrls.push({ group, url: shortUrl });
+
+          console.log(`Short URL for ${group}: ${shortUrl}`);
+        } catch (error) {
+          console.error(`Error shortening URL for ${group}:`, error);
+        }
       }
     }
 
-    // Update de state met gegenereerde tokens en URLs
     setTokens(generatedTokens);
     setCombinedUrls(generatedUrls);
   };
