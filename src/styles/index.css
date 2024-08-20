@@ -1,0 +1,24 @@
+/* Import Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif; /* Set Poppins as the default font */
+  color: #573561;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #FFFCF7;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.team-name {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #67486F; /* Match button color or choose another color */
+}

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from './components/Header';
 import FormGroup from './components/FormGroup';
 import DashboardLinkList from './components/DashboardLinkList';
-import { handleKeyPress } from './utils/keyboard';
+import { handleKeyPress, isDebugMode } from './utils/keyboard';
 import { generateToken } from './utils/token';
 import { generateShortUrl } from './utils/url';
 
@@ -26,7 +26,7 @@ const JWTGenerator = () => {
       .then((data) => {
         setDashboards(data);
 
-        // Filter dashboards only if a team is specified in the URL
+        // Filter dashboards based on the team parameter
         if (team) {
           const teamDashboards = data.filter(dashboard => dashboard.team.replace(/\s+/g, '-').toLowerCase() === team.toLowerCase());
           setFilteredDashboards(teamDashboards);
@@ -87,30 +87,58 @@ const JWTGenerator = () => {
 
       <h1>Dashboard link generator</h1>
 
-      <FormGroup
-        label="Groepsnamen (komma gescheiden)"
-        smallText="Voer de namen van de groepen in, gescheiden door komma's."
-        id="groupNames"
-        value={groupNames}
-        onChange={(e) => setGroupNames(e.target.value)}
-        placeholder="Voer groepsnamen in"
-      />
+      {team ? (
+        <>
+          <FormGroup
+            label="Groepsnamen (komma gescheiden)"
+            smallText="Voer de namen van de groepen in, gescheiden door komma's."
+            id="groupNames"
+            value={groupNames}
+            onChange={(e) => setGroupNames(e.target.value)}
+            placeholder="Voer groepsnamen in"
+          />
 
-      <FormGroup
-        label="Selecteer Dashboard"
-        smallText="Kies een dashboard uit de lijst."
-        id="dashboard"
-        value={selectedDashboard}
-        onChange={(e) => setSelectedDashboard(e.target.value)}
-        type="select"
-        options={filteredDashboards.map(dashboard => ({ label: dashboard.name, value: dashboard.name }))}
-      />
+          <FormGroup
+            label="Selecteer Dashboard"
+            smallText="Kies een dashboard uit de lijst."
+            id="dashboard"
+            value={selectedDashboard}
+            onChange={(e) => setSelectedDashboard(e.target.value)}
+            type="select"
+            options={filteredDashboards.map(dashboard => ({ label: dashboard.name, value: dashboard.name }))}
+          />
 
-      <button className="btn btn-primary mt-3" onClick={generateTokensAndUrls}>
-        Genereer link
-      </button>
+          <button className="btn btn-primary mt-3" onClick={generateTokensAndUrls}>
+            Genereer link
+          </button>
 
-      {combinedUrls.length > 0 && <DashboardLinkList combinedUrls={combinedUrls} />}
+          {combinedUrls.length > 0 && <DashboardLinkList combinedUrls={combinedUrls} />}
+        </>
+      ) : (
+        <>
+          <h2>Alle beschikbare dashboards per team:</h2>
+          {dashboards.reduce((acc, dashboard) => {
+            const teamName = dashboard.team;
+            if (!acc[teamName]) acc[teamName] = [];
+            acc[teamName].push(dashboard);
+            return acc;
+          }, {}) && Object.entries(dashboards.reduce((acc, dashboard) => {
+            const teamName = dashboard.team;
+            if (!acc[teamName]) acc[teamName] = [];
+            acc[teamName].push(dashboard);
+            return acc;
+          }, {})).map(([teamName, teamDashboards]) => (
+            <div key={teamName} className="mb-5">
+              <h3>Team: {teamName}</h3>
+              <ul>
+                {teamDashboards.map(dashboard => (
+                  <li key={dashboard.name}>{dashboard.name}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 };

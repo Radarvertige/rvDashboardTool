@@ -1,0 +1,34 @@
+.btn-clear {
+    background-color: white; /* A distinctive color, different from the primary button */
+    color: #67486F;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 10px; /* Add some space between the buttons */
+  }
+  
+  .btn-clear:hover {
+    background-color: #563A5A; /* Slightly darker shade on hover */
+    color: #fff;
+
+  }
+  .btn-primary:hover {
+    background-color: #563A5A; /* Slightly darker shade on hover */
+  }
+  
+  .btn-primary {
+    background-color: #67486F;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #563A5A; /* Slightly darker shade on hover */
+  }
+  

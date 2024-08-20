@@ -1,0 +1,22 @@
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; /* Full viewport height to center vertically */
+  text-align: center;
+  
+}
+
+.header-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.header-title {
+  margin-top: 20px;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #67486F; /* Match button color or choose another color */
+  font-family: 'Poppins', sans-serif;
+}
