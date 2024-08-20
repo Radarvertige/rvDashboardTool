@@ -57,13 +57,15 @@ export const generateTokens = async (groupNames, selectedDashboard, dashboards, 
         const data = await response.json();
         const shortUrl = data.shorturl;
 
-        generatedTokens.push({ group, token });
-        generatedUrls.push({ group, url: shortUrl });
+        const fullUrl = `${shortUrl}?team=${encodeURIComponent(dashboard.team)}&group=${encodeURIComponent(group)}`;
 
-        if (isDebugMode()) console.log(`Short URL for ${group}: ${shortUrl}`);
+        generatedTokens.push({ group, token });
+        generatedUrls.push({ group, url: fullUrl, team: dashboard.team });
+
+        if (isDebugMode()) console.log(`Short URL for ${group}: ${fullUrl}`);
 
         // Add each URL and group name to the clipboardText
-        clipboardText += `Groep: ${group}\nURL: ${shortUrl}\n\n`;
+        clipboardText += `Groep: ${group}\nURL: ${fullUrl}\n\n`;
       } catch (error) {
         console.error(`Error shortening URL for ${group}:`, error);
       }
