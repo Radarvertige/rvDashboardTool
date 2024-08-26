@@ -2,11 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import FormGroup from './FormGroup';
 import DashboardLinkList from './DashboardLinkList';
+<<<<<<< HEAD
 import TeamDashboardList from './TeamDashboardList';
 import { generateUrls } from '../utils/urlGenerator';
 import { Button, Modal } from 'react-bootstrap';
 import UserManualModal from './UserManualModal';  // Import the modal component
 
+=======
+import { generateUrls } from '../utils/urlGenerator';
+>>>>>>> 0f46ed1b16004d64d31eaffb8248a4a508fce184
 import '../styles/DashboardForm.css';
 
 const DashboardForm = () => {
@@ -19,6 +23,7 @@ const DashboardForm = () => {
   const [showModal, setShowModal] = useState(false);  // State to control the modal visibility
   const groupInputRef = useRef(null);
 
+<<<<<<< HEAD
   // Fetch the dashboards.json file on component mount
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/dashboards.json`)
@@ -51,13 +56,19 @@ const DashboardForm = () => {
     }
   }, [team, dashboards]);
 
+=======
+>>>>>>> 0f46ed1b16004d64d31eaffb8248a4a508fce184
   const handleGenerateUrls = async () => {
     if (!selectedDashboard) {
       alert("Selecteer een dashboard");
       return;
     }
 
+<<<<<<< HEAD
     const dashboard = filteredDashboards.find(d => d.name === selectedDashboard);
+=======
+    const dashboard = dashboards.find(d => d.name === selectedDashboard);
+>>>>>>> 0f46ed1b16004d64d31eaffb8248a4a508fce184
     if (!dashboard) {
       alert("Geselecteerd dashboard niet gevonden");
       return;
@@ -100,9 +111,15 @@ const DashboardForm = () => {
             options={filteredDashboards.map(dashboard => ({ label: dashboard.name, value: dashboard.name }))}
           />
 
+<<<<<<< HEAD
           <button className="btn btn-primary mt-3" onClick={handleGenerateUrls}>
             Genereer link
           </button>
+=======
+      <button className="btn btn-primary mt-3" onClick={handleGenerateUrls}>
+        Genereer link
+      </button>
+>>>>>>> 0f46ed1b16004d64d31eaffb8248a4a508fce184
 
           <button className="btn btn-clear mt-3" onClick={clearForm}>
             Nieuw link maken
