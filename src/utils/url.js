@@ -7,38 +7,6 @@ const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';  // CORS proxy URL
 export const getExistingUrl = async (keyword) => {
   try {
     const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=expand&format=json&shorturl=${encodeURIComponent(keyword)}`;
-<<<<<<< HEAD
-=======
-
-    if (isDebugMode()) {
-      console.log(`Request URL to fetch existing URL: ${requestUrl}`);
-    }
-
-    const response = await fetch(requestUrl);
-    const data = await response.json();
-
-    if (data && data.longurl) {
-      if (isDebugMode()) {
-        console.log(`Existing short URL found for keyword "${keyword}": ${data.shorturl} -> ${data.longurl}`);
-      }
-      return data.longurl;
-    } else {
-      console.error("YOURLS API response did not contain a long URL:", data);
-      return null;
-    }
-  } catch (error) {
-    console.error(`Error fetching existing URL:`, error);
-    return null;
-  }
-};
-
-export const shortenUrl = async (finalUrl, keyword) => {
-  try {
-    console.log(`Final URL before shortening: ${finalUrl}`);
-    console.log(`Keyword (Slug) before shortening: ${keyword}`);
-
-    const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=shorturl&format=json&url=${encodeURIComponent(finalUrl)}&keyword=${encodeURIComponent(keyword)}`;
->>>>>>> 0f46ed1b16004d64d31eaffb8248a4a508fce184
 
     if (isDebugMode()) {
       console.log(`Request URL to fetch existing URL: ${CORS_PROXY + requestUrl}`);
@@ -47,7 +15,6 @@ export const shortenUrl = async (finalUrl, keyword) => {
     const response = await fetch(CORS_PROXY + requestUrl);
     const data = await response.json();
 
-<<<<<<< HEAD
     if (data && data.longurl) {
       if (isDebugMode()) {
         console.log(`Existing short URL found for keyword "${keyword}": ${data.shorturl} -> ${data.longurl}`);
@@ -77,8 +44,6 @@ export const shortenUrl = async (finalUrl, keyword) => {
     const response = await fetch(CORS_PROXY + requestUrl);
     const data = await response.json();
 
-=======
->>>>>>> 0f46ed1b16004d64d31eaffb8248a4a508fce184
     if (data && data.status === "fail" && data.code === "error:keyword") {
       console.warn(`Keyword conflict detected: ${data.message}`);
       // Keyword conflict - fetch the existing URL
