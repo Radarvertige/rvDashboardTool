@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.809ab52b.css",
-    "main.js": "/static/js/main.24d15428.js",
-    "static/js/453.ca39bd49.chunk.js": "/static/js/453.ca39bd49.chunk.js",
-    "index.html": "/index.html",
-    "main.809ab52b.css.map": "/static/css/main.809ab52b.css.map",
-    "main.24d15428.js.map": "/static/js/main.24d15428.js.map",
-    "453.ca39bd49.chunk.js.map": "/static/js/453.ca39bd49.chunk.js.map"
+    "main.css": "/rvDashboardTool/static/css/main.809ab52b.css",
+    "main.js": "/rvDashboardTool/static/js/main.94758bca.js",
+    "static/js/453.ca39bd49.chunk.js": "/rvDashboardTool/static/js/453.ca39bd49.chunk.js",
+    "index.html": "/rvDashboardTool/index.html",
+    "main.809ab52b.css.map": "/rvDashboardTool/static/css/main.809ab52b.css.map",
+    "main.94758bca.js.map": "/rvDashboardTool/static/js/main.94758bca.js.map",
+    "453.ca39bd49.chunk.js.map": "/rvDashboardTool/static/js/453.ca39bd49.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.809ab52b.css",
-    "static/js/main.24d15428.js"
+    "static/js/main.94758bca.js"
   ]
 }

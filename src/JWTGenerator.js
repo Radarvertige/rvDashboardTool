@@ -13,16 +13,28 @@ const JWTGenerator = () => {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
 
-    fetch('/dashboards.json')
-      .then((response) => response.json())
+    fetch(`${process.env.PUBLIC_URL}/dashboards.json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then((data) => {
         setDashboards(data || []); // Ensure that dashboards is an array
         if (team) {
-          const teamDashboards = data.filter(dashboard => dashboard.team.replace(/\s+/g, '-').toLowerCase() === team.toLowerCase());
+          const teamDashboards = data.filter(dashboard =>
+            dashboard.team.replace(/\s+/g, '-').toLowerCase() === team.toLowerCase()
+          );
           setFilteredDashboards(teamDashboards);
         } else {
-          setFilteredDashboards([]);
+          setFilteredDashboards(data.filter(dashboard => dashboard.team)); // Show all dashboards with a team if no specific team is selected
         }
+      })
+      .catch(error => {
+        console.error('Error fetching dashboards.json:', error);
+        setDashboards([]);
+        setFilteredDashboards([]);
       });
 
     return () => {
@@ -40,7 +52,7 @@ const JWTGenerator = () => {
           dashboards={filteredDashboards}
         />
       ) : (
-        <TeamDashboardList dashboards={dashboards} />
+        <TeamDashboardList dashboards={filteredDashboards} />
       )}
     </div>
   );

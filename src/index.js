@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import JWTGenerator from './JWTGenerator'; // Import the new main component
+import JWTGenerator from './JWTGenerator';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.css';
 
@@ -11,7 +11,7 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/rvDashboardTool">
       <Routes>
         <Route path="/" element={<JWTGenerator />} />
         <Route path="/:team" element={<JWTGenerator />} />
