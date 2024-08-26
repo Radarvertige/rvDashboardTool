@@ -1,10 +1,9 @@
 import React from 'react';
 
-function FormGroup({ label, smallText, id, value, onChange, placeholder, type = 'text', options = [] }) {
+function FormGroup({ label, id, value, onChange, placeholder, type = 'text', options = [] }) {
   return (
     <div className="form-group">
       <label htmlFor={id}>{label}</label>
-      <small className="form-text text-muted">{smallText}</small>
       {type === 'text' ? (
         <input
           type="text"
@@ -16,7 +15,7 @@ function FormGroup({ label, smallText, id, value, onChange, placeholder, type = 
         />
       ) : (
         <select id={id} className="form-control" value={value} onChange={onChange}>
-          <option value="">-- Selecteer een Dashboard --</option>
+          <option value="">-- Kies een dashboard uit de lijst. --</option>
           {options.map(option => (
             <option key={option.value} value={option.value}>
               {option.label}

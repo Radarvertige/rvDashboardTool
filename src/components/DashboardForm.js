@@ -4,6 +4,9 @@ import FormGroup from './FormGroup';
 import DashboardLinkList from './DashboardLinkList';
 import TeamDashboardList from './TeamDashboardList';
 import { generateUrls } from '../utils/urlGenerator';
+import { Button, Modal } from 'react-bootstrap';
+import UserManualModal from './UserManualModal';  // Import the modal component
+
 import '../styles/DashboardForm.css';
 
 const DashboardForm = () => {
@@ -13,6 +16,7 @@ const DashboardForm = () => {
   const [groupNames, setGroupNames] = useState('');
   const [selectedDashboard, setSelectedDashboard] = useState('');
   const [combinedUrls, setCombinedUrls] = useState([]);
+  const [showModal, setShowModal] = useState(false);  // State to control the modal visibility
   const groupInputRef = useRef(null);
 
   // Fetch the dashboards.json file on component mount
@@ -32,13 +36,17 @@ const DashboardForm = () => {
       });
   }, []);
 
-  // Filter dashboards based on the team from the URL params
+  // Filter and sort dashboards based on the team from the URL params
   useEffect(() => {
     if (team) {
-      const filtered = dashboards.filter(dashboard => dashboard.team === team);
+      const filtered = dashboards
+        .filter(dashboard => dashboard.team === team)
+        .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
       setFilteredDashboards(filtered);
     } else {
-      const filtered = dashboards.filter(dashboard => dashboard.team);
+      const filtered = dashboards
+        .filter(dashboard => dashboard.team)
+        .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by name
       setFilteredDashboards(filtered);
     }
   }, [team, dashboards]);
@@ -65,24 +73,26 @@ const DashboardForm = () => {
     setCombinedUrls([]);
   };
 
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
   return (
+    
     <div>
-      <h1>Dashboard Link Generator</h1>
       {team ? (
         <>
           <FormGroup
-            label="Groepsnamen (komma gescheiden)"
-            smallText="Voer de namen van de groepen in, gescheiden door komma's."
+            label="Groepsnaam (of namen)"
             id="groupNames"
             value={groupNames}
             onChange={(e) => setGroupNames(e.target.value)}
-            placeholder="Voer groepsnamen in"
+            placeholder="Voer de namen van de groepen in, gescheiden door komma's."
             inputRef={groupInputRef}
           />
 
           <FormGroup
             label="Selecteer Dashboard"
-            smallText="Kies een dashboard uit de lijst."
+            smallText=""
             id="dashboard"
             value={selectedDashboard}
             onChange={(e) => setSelectedDashboard(e.target.value)}
@@ -97,12 +107,18 @@ const DashboardForm = () => {
           <button className="btn btn-clear mt-3" onClick={clearForm}>
             Nieuw link maken
           </button>
+           <Button variant="link" onClick={handleShowModal} style={{ float: 'right', fontSize: '1.5rem', marginRight: '10px' }}>
+          ?
+        </Button>
+      
 
           {combinedUrls.length > 0 && <DashboardLinkList combinedUrls={combinedUrls} />}
         </>
       ) : (
         <TeamDashboardList dashboards={filteredDashboards} />
       )}
+
+      <UserManualModal show={showModal} handleClose={handleCloseModal} />
     </div>
   );
 };

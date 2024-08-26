@@ -31,4 +31,9 @@
   .btn-primary:hover {
     background-color: #563A5A; /* Slightly darker shade on hover */
   }
+ .modal-dialog {
+    width: 50%;
+    /* max-width: 800px; */
+  }
+  
   
