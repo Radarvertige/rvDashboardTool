@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
 import FormGroup from './FormGroup';
 import DashboardLinkList from './DashboardLinkList';
-import { generateToken } from '../utils/token';
-import { generateShortUrl } from '../utils/url';
+import { generateUrls } from '../utils/urlGenerator';
 import '../styles/DashboardForm.css';
 
 const DashboardForm = ({ team, dashboards }) => {
@@ -11,21 +10,10 @@ const DashboardForm = ({ team, dashboards }) => {
   const [combinedUrls, setCombinedUrls] = useState([]);
   const groupInputRef = useRef(null);
 
-  const generateTokensAndUrls = async () => {
+  const handleGenerateUrls = async () => {
     if (!selectedDashboard) {
       alert("Selecteer een dashboard");
       return;
-    }
-
-    let groups = [];
-    if (!groupNames) {
-      const confirmNoGroup = window.confirm("Geen groep(en)? Weet je het zeker?");
-      if (!confirmNoGroup) {
-        groupInputRef.current.focus(); // Focus on the group input field
-        return;
-      }
-    } else {
-      groups = groupNames.split(',').map(name => name.trim());
     }
 
     const dashboard = dashboards.find(d => d.name === selectedDashboard);
@@ -34,36 +22,8 @@ const DashboardForm = ({ team, dashboards }) => {
       return;
     }
 
-    const generatedUrls = [];
-    let clipboardText = '';
-
-    // Generate the token and URL for each group, or just once if no groups
-    if (groups.length === 0) {
-      const token = await generateToken('', dashboard); // Generate without group
-      const finalUrl = await generateShortUrl(token, dashboard, '');
-      if (finalUrl) {
-        generatedUrls.push({ group: '', url: finalUrl, team: dashboard.team });
-        clipboardText += `URL: ${finalUrl}\n\n`;
-      }
-    } else {
-      for (let group of groups) {
-        if (group) {
-          const token = await generateToken(group, dashboard);
-          const finalUrl = await generateShortUrl(token, dashboard, group);
-
-          if (finalUrl) {
-            generatedUrls.push({ group, url: finalUrl, team: dashboard.team });
-            clipboardText += `Groep: ${group}\nURL: ${finalUrl}\n\n`;
-          }
-        }
-      }
-    }
-
+    const generatedUrls = await generateUrls(dashboard, groupNames);
     setCombinedUrls(generatedUrls);
-
-    navigator.clipboard.writeText(clipboardText).then(() => {
-      alert("Links zijn gekopieerd!");
-    });
   };
 
   const clearForm = () => {
@@ -94,7 +54,7 @@ const DashboardForm = ({ team, dashboards }) => {
         options={dashboards.map(dashboard => ({ label: dashboard.name, value: dashboard.name }))}
       />
 
-      <button className="btn btn-primary mt-3" onClick={generateTokensAndUrls}>
+      <button className="btn btn-primary mt-3" onClick={handleGenerateUrls}>
         Genereer link
       </button>
 
