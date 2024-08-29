@@ -28,10 +28,10 @@
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgyMTF9.wTyRTSdbR5EvjyLUbfR88ykoQGx9SIwUBizoMbZeJGs"
     },
     {
-        "name": "Dashboard  (3)",
+        "name": "HOA - Antwoorden op vragen",
         "url": "https://insights.learningpool.com/contexts/2090/shared/",
         "key": "39364bb6-553a-4f71-822a-84c169294427",
-        "team": "",
+        "team": "LEV",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgwNjl9.jCFMfgs9ELogLwXIgcqfrZujfxWhXEcMLyX9gyEyx2E"
     },
     {
@@ -98,7 +98,7 @@
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc0NzZ9._nfnvXjMEt9SZd9dTKQysUdIfZ7ZGisJ4r_7UJw8s-U"
     },
     {
-        "name": "Praktijkbegeleiders Den Haag",
+        "name": "HOA - Praktijkbegeleiders Den Haag",
         "url": "https://insights.learningpool.com/contexts/2061/shared/",
         "key": "f6365a5c-1bf0-4ff5-b0b8-eca0911e656d",
         "team": "LEV",
