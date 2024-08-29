@@ -6,17 +6,17 @@
   [[redirects]]
   from = "/aw"
   to = "/AW"
-  status = 200
+  status = 301
   force = true
 
 [[redirects]]
   from = "/sd"
   to = "/SD"
-  status = 200
+  status = 301
   force = true
 
   [[redirects]]
   from = "/lev"
   to = "/LEV"
-  status = 200
+  status = 301
   force = true
