@@ -2,17 +2,16 @@ import { isDebugMode } from './keyboard';
 
 const YOURLS_API_URL = 'https://rdar.nl/yourls-api.php';
 const YOURLS_SIGNATURE = '157448975e';
-const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';  // CORS proxy URL
 
 export const getExistingUrl = async (keyword) => {
   try {
     const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=expand&format=json&shorturl=${encodeURIComponent(keyword)}`;
 
     if (isDebugMode()) {
-      console.log(`Request URL to fetch existing URL: ${CORS_PROXY + requestUrl}`);
+      console.log(`Request URL to fetch existing URL: ${requestUrl}`);
     }
 
-    const response = await fetch(CORS_PROXY + requestUrl);
+    const response = await fetch(requestUrl);
     const data = await response.json();
 
     if (data && data.longurl) {
@@ -38,10 +37,10 @@ export const shortenUrl = async (finalUrl, keyword) => {
     const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=shorturl&format=json&url=${encodeURIComponent(finalUrl)}&keyword=${encodeURIComponent(keyword)}`;
 
     if (isDebugMode()) {
-      console.log(`Request URL: ${CORS_PROXY + requestUrl}`);
+      console.log(`Request URL: ${requestUrl}`);
     }
 
-    const response = await fetch(CORS_PROXY + requestUrl);
+    const response = await fetch(requestUrl);
     const data = await response.json();
 
     if (data && data.status === "fail" && data.code === "error:keyword") {
