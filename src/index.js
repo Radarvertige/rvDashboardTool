@@ -11,7 +11,7 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Router basename="/rvDashboardTool">
+    <Router basename="/">
       <Routes>
         <Route path="/" element={<JWTGenerator />} />
         <Route path="/:team" element={<JWTGenerator />} />
