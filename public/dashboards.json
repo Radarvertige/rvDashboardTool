@@ -28,11 +28,7 @@
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgyMTF9.wTyRTSdbR5EvjyLUbfR88ykoQGx9SIwUBizoMbZeJGs"
     },
     {
-<<<<<<< HEAD:public/dashboards.json
         "name": "HOA - Antwoorden op vragen",
-=======
-        "name": "LEV - HOA - Antwoorden op vragen",
->>>>>>> 924f0cef43a187a408e4c9c82a1499fc9812e22d:src/data/dashboards.json
         "url": "https://insights.learningpool.com/contexts/2090/shared/",
         "key": "39364bb6-553a-4f71-822a-84c169294427",
         "team": "LEV",

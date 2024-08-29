@@ -5,6 +5,7 @@ import DashboardForm from './components/DashboardForm';
 import TeamDashboardList from './components/TeamDashboardList';
 import { handleKeyPress } from './utils/keyboard';
 
+
 const JWTGenerator = () => {
   const { team } = useParams();
   const [dashboards, setDashboards] = useState([]);
@@ -13,8 +14,7 @@ const JWTGenerator = () => {
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
 
-    // Fetch the dashboards.json file using a Netlify function
-    fetch('.netlify/functions/getDashboards')
+    fetch(`${process.env.PUBLIC_URL}/dashboards.json`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -33,7 +33,7 @@ const JWTGenerator = () => {
         }
       })
       .catch(error => {
-        console.error('Error fetching dashboards:', error);
+        console.error('Error fetching dashboards.json:', error);
         setDashboards([]);
         setFilteredDashboards([]);
       });
