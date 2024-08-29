@@ -10,7 +10,7 @@ const UserManualModal = ({ show, handleClose }) => {
       <Modal.Body>
         <h4>Inleiding</h4>
         <p>
-          Welkom bij de nieuwe Dashboard Link Generator! Deze tool is speciaal ontwikkeld voor het genereren van korte en unieke URL's voor de nieuwe dashboards. Hiermee kun je snel en gemakkelijk toegang krijgen tot de dashboards die je nodig hebt.
+          Welkom bij de Dashboard Link Generator! Deze tool is speciaal ontwikkeld voor het genereren van korte en unieke URL's voor de dashboards. Hiermee kun je snel en gemakkelijk toegang krijgen tot de dashboards die je nodig hebt.
         </p>
         <h4>Stap 1: Dashboard Selecteren</h4>
         <p>
@@ -18,7 +18,7 @@ const UserManualModal = ({ show, handleClose }) => {
         </p>
         <h4>Stap 2: Groepsnamen Invoeren (optioneel)</h4>
         <p>
-          In het veld "Groepsnamen (komma gescheiden)" kun je de namen van de groepen invoeren waarvoor je de link wilt genereren. Scheid meerdere groepen door een komma. Als je geen groep wilt invoeren, laat je dit veld leeg.
+          In het veld "Groepsnamen (komma gescheiden)" kun je de namen van de groepen invoeren waarvoor je de link wilt genereren. Scheid meerdere groepen door een komma. <u>Is er geen groep, of wil je een totaal overzicht hebben?</u>. Laat dit veld leeg je krijgt dan zelfde dashboard maar dan niet gefilterd op groep.
         </p>
         <h4>Stap 3: Link Genereren</h4>
         <p>
@@ -32,6 +32,9 @@ const UserManualModal = ({ show, handleClose }) => {
         <p>
           Wil je opnieuw beginnen? Klik op de knop "Nieuw link maken". Dit zal het formulier leegmaken zodat je nieuwe links kunt genereren.
         </p>
+
+        <h4>Vragen?</h4>
+        <p>Loop,mail, teams dan <a href="mailto:d.vanderstam@radarvertige.nl?subject=Vraag over dashboards">Daniel</a> </p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
