@@ -3,20 +3,5 @@
   to = "/index.html"
   status = 200
 
-  [[redirects]]
-  from = "/aw"
-  to = "/AW"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/sd"
-  to = "/SD"
-  status = 301
-  force = true
-
-  [[redirects]]
-  from = "/lev"
-  to = "/LEV"
-  status = 301
-  force = true
+  [functions]
+  directory = ".netlify/functions"
