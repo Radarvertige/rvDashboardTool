@@ -34,7 +34,7 @@ const UserManualModal = ({ show, handleClose }) => {
         </p>
 
         <h4>Vragen?</h4>
-        <p>Loop,mail, teams dan <a href="mailto:d.vanderstam@radarvertige.nl?subject=Vraag over dashboards">Daniel</a> </p>
+        <p>Loop,mail, teams dan <a href="mailto:d.vanderstam@radarvertige.nl?subject=Vraag over dashboards.">Daniel</a> </p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
