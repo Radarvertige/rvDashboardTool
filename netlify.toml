@@ -2,3 +2,21 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+  [[redirects]]
+  from = "/aw"
+  to = "/AW"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/sd"
+  to = "/SD"
+  status = 200
+  force = true
+
+  [[redirects]]
+  from = "/lev"
+  to = "/LEV"
+  status = 200
+  force = true
