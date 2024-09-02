@@ -19,7 +19,7 @@ const UserManualModal = ({ show, handleClose }) => {
         <h4>Stap 2: Groepsnamen Invoeren (optioneel)</h4>
         <p>
           In het veld "Groepsnamen (komma gescheiden)" kun je de namen van de groepen invoeren waarvoor je de link wilt genereren. Scheid meerdere groepen door een komma. <u>Is er geen groep, of wil je een totaal overzicht hebben?</u>. Laat dit veld leeg je krijgt dan zelfde dashboard maar dan niet gefilterd op groep.
-        <strong>Gebruik altijd de groepsnaam die je in radaronline, thor, hho gebruikt.</strong>
+        <p><strong>Gebruik altijd de groepsnaam die je in radaronline, thor, hho gebruikt.</strong></p>
         </p>
         <h4>Stap 3: Link Genereren</h4>
         <p>
