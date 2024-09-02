@@ -19,9 +19,9 @@ const DashboardForm = () => {
   const [showModal, setShowModal] = useState(false);  // State to control the modal visibility
   const groupInputRef = useRef(null);
 
-  // Fetch the dashboards.json file using a Netlify function
+  // Fetch the dashboards.json file on component mount
   useEffect(() => {
-    fetch('/.netlify/functions/getDashboards')
+    fetch(`${process.env.PUBLIC_URL}/dashboards.json`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -32,7 +32,7 @@ const DashboardForm = () => {
         setDashboards(data);
       })
       .catch(error => {
-        console.error('Error fetching dashboards:', error);
+        console.error('Error fetching dashboards.json:', error);
       });
   }, []);
 
@@ -77,10 +77,10 @@ const DashboardForm = () => {
   const handleCloseModal = () => setShowModal(false);
 
   return (
+
     <div>
       {team ? (
         <>
-          {/* Switch the order of the FormGroup components */}
           <FormGroup
             label="Selecteer Dashboard"
             id="dashboard"
@@ -110,6 +110,7 @@ const DashboardForm = () => {
           <Button variant="link" onClick={handleShowModal} style={{ float: 'right', fontSize: '1.5rem', marginRight: '10px' }}>
             ?
           </Button>
+
 
           {combinedUrls.length > 0 && <DashboardLinkList combinedUrls={combinedUrls} />}
         </>
