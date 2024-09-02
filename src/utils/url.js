@@ -18,7 +18,7 @@ export const getExistingUrl = async (keyword) => {
       if (isDebugMode()) {
         console.log(`Existing short URL found for keyword "${keyword}": ${data.shorturl} -> ${data.longurl}`);
       }
-      return data.longurl;
+      return data.shorturl;
     } else {
       console.error("YOURLS API response did not contain a long URL:", data);
       return null;
@@ -34,6 +34,13 @@ export const shortenUrl = async (finalUrl, keyword) => {
     console.log(`Final URL before shortening: ${finalUrl}`);
     console.log(`Keyword (Slug) before shortening: ${keyword}`);
 
+    // Check if the short URL already exists
+    const existingUrl = await getExistingUrl(keyword);
+    if (existingUrl) {
+      console.log(`Short URL already exists: ${existingUrl}`);
+      return existingUrl;
+    }
+
     const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=shorturl&format=json&url=${encodeURIComponent(finalUrl)}&keyword=${encodeURIComponent(keyword)}`;
 
     if (isDebugMode()) {
@@ -45,9 +52,8 @@ export const shortenUrl = async (finalUrl, keyword) => {
 
     if (data && data.status === "fail" && data.code === "error:keyword") {
       console.warn(`Keyword conflict detected: ${data.message}`);
-      // Keyword conflict - fetch the existing URL
-      const existingUrl = await getExistingUrl(keyword);
-      return existingUrl || finalUrl;
+      // If a keyword conflict occurs, return the existing URL
+      return await getExistingUrl(keyword);
     }
 
     if (data && data.shorturl) {
