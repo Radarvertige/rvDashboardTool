@@ -71,9 +71,11 @@ export const shortenUrl = async (finalUrl, keyword) => {
   }
 };
 
-export const generateShortUrl = async (token, dashboard, keyword) => {
+export const generateShortUrl = async (token, dashboard, groupName) => {
   try {
     const combinedUrl = `${dashboard.url}${token}`;
+    const teamName = dashboard.team.replace(/\s+/g, '-').toLowerCase(); // Remove spaces and convert to lowercase
+    const keyword = `${teamName}-${groupName.replace(/\s+/g, '-').toLowerCase()}`; // Combine team and group names
 
     if (isDebugMode()) {
       console.log(`Keyword (Slug): ${keyword}`);

@@ -16,11 +16,14 @@ const UserManualModal = ({ show, handleClose }) => {
         <p>
           Gebruik het keuzemenu om een dashboard uit de lijst te selecteren. Dit is het dashboard waarvoor je een link wilt genereren.
         </p>
+        <p><em> ! Als je het gewenste dashboard niet ziet, kan het zijn dat er nog geen dashboard bestaat of dat het nog in ontwikkeling is. Vraag Daniel hier gerust naar.</em>
+        </p>
         <h4>Stap 2: Groepsnamen Invoeren (optioneel)</h4>
         <p>
-          In het veld "Groepsnamen (komma gescheiden)" kun je de namen van de groepen invoeren waarvoor je de link wilt genereren. Scheid meerdere groepen door een komma. <u>Is er geen groep, of wil je een totaal overzicht hebben?</u>. Laat dit veld leeg je krijgt dan zelfde dashboard maar dan niet gefilterd op groep.
-        <p><strong>Gebruik altijd de groepsnaam die je in radaronline, thor, hho gebruikt.</strong></p>
+          In het veld "Groepsnamen (komma gescheiden)" kun je de namen van de groepen invoeren waarvoor je de link wilt genereren. Scheid meerdere groepen door een komma. </p>
+           <p><u>Is er geen groep, of wil je een totaal overzicht hebben?</u>. Laat dit veld leeg je krijgt dan hetzelfde dashboard maar dan niet gefilterd op groep.
         </p>
+        <p><em>! Gebruik altijd de groepsnaam die je in radaronline, thor, hho gebruikt.</em></p>
         <h4>Stap 3: Link Genereren</h4>
         <p>
           Klik op de knop "Genereer link". De tool zal nu de URL's genereren op basis van je invoer.

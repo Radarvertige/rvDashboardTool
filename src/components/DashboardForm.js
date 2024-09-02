@@ -19,9 +19,9 @@ const DashboardForm = () => {
   const [showModal, setShowModal] = useState(false);  // State to control the modal visibility
   const groupInputRef = useRef(null);
 
-  // Fetch the dashboards.json file on component mount
+  // Fetch the dashboards.json file using a Netlify function
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/dashboards.json`)
+    fetch('/.netlify/functions/getDashboards')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -32,7 +32,7 @@ const DashboardForm = () => {
         setDashboards(data);
       })
       .catch(error => {
-        console.error('Error fetching dashboards.json:', error);
+        console.error('Error fetching dashboards:', error);
       });
   }, []);
 
@@ -77,10 +77,20 @@ const DashboardForm = () => {
   const handleCloseModal = () => setShowModal(false);
 
   return (
-    
     <div>
       {team ? (
         <>
+          {/* Switch the order of the FormGroup components */}
+          <FormGroup
+            label="Selecteer Dashboard"
+            id="dashboard"
+            value={selectedDashboard}
+            onChange={(e) => setSelectedDashboard(e.target.value)}
+            type="select"
+            options={filteredDashboards.map(dashboard => ({ label: dashboard.name, value: dashboard.name }))}
+            placeholder="Kies een dashboard uit de lijst."
+          />
+
           <FormGroup
             label="Groepsnaam (of namen)"
             id="groupNames"
@@ -90,16 +100,6 @@ const DashboardForm = () => {
             inputRef={groupInputRef}
           />
 
-          <FormGroup
-            label="Selecteer Dashboard"
-            smallText=""
-            id="dashboard"
-            value={selectedDashboard}
-            onChange={(e) => setSelectedDashboard(e.target.value)}
-            type="select"
-            options={filteredDashboards.map(dashboard => ({ label: dashboard.name, value: dashboard.name }))}
-          />
-
           <button className="btn btn-primary mt-3" onClick={handleGenerateUrls}>
             Genereer link
           </button>
@@ -107,10 +107,9 @@ const DashboardForm = () => {
           <button className="btn btn-clear mt-3" onClick={clearForm}>
             Nieuw link maken
           </button>
-           <Button variant="link" onClick={handleShowModal} style={{ float: 'right', fontSize: '1.5rem', marginRight: '10px' }}>
-          ?
-        </Button>
-      
+          <Button variant="link" onClick={handleShowModal} style={{ float: 'right', fontSize: '1.5rem', marginRight: '10px' }}>
+            ?
+          </Button>
 
           {combinedUrls.length > 0 && <DashboardLinkList combinedUrls={combinedUrls} />}
         </>
