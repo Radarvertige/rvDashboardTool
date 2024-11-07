@@ -3,11 +3,10 @@ import { useParams } from 'react-router-dom';
 import FormGroup from './FormGroup';
 import DashboardLinkList from './DashboardLinkList';
 import TeamDashboardList from './TeamDashboardList';
-import { generateUrls } from '../utils/urlGenerator';  // Import the updated function
+import { generateUrls } from '../utils/urlGenerator';
 import { Button } from 'react-bootstrap';
 import UserManualModal from './UserManualModal';
 import CopilotIframe from '../utils/CopilotIframe';
-import { generateToken } from '../utils/token';
 
 import '../styles/DashboardForm.css';
 
@@ -54,14 +53,17 @@ const DashboardForm = () => {
     }
   }, [team, dashboards]);
 
-  // Listen for messages from the iframe
+  // Add an event listener to receive messages from the iframe
   useEffect(() => {
     const handleMessage = (event) => {
       if (event.data.type === 'RESULT_DATA') {
+        // Update participants state with the data received from iframe
         setParticipants(event.data.data);
       }
     };
+
     window.addEventListener('message', handleMessage);
+
     return () => {
       window.removeEventListener('message', handleMessage);
     };
@@ -79,14 +81,7 @@ const DashboardForm = () => {
       return;
     }
 
-    const isNvwaDashboard = selectedDashboard === 'NVWA - Professionele Weerbaarheid - Trainers';
-    
-    // Converteer participants naar een array, als het een string is
-    const participantsArray = participants
-      ? participants.split(',').map(name => name.trim())
-      : [];
-
-    const generatedUrls = await generateUrls(dashboard, groupNames, participantsArray, isNvwaDashboard);
+    const generatedUrls = await generateUrls(dashboard, groupNames || participants);
     setCombinedUrls(generatedUrls);
   };
 
