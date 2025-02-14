@@ -79,7 +79,7 @@ const DashboardForm = () => {
       return;
     }
 
-    const isNvwaDashboard = selectedDashboard === 'NVWA - Professionele Weerbaarheid - Trainers';
+    const isNvwaDashboard = selectedDashboard.includes('NVWA');
     
     // Converteer participants naar een array, als het een string is
     const participantsArray = participants
@@ -114,7 +114,7 @@ const DashboardForm = () => {
             placeholder="Kies een dashboard uit de lijst."
           />
 
-          {selectedDashboard === 'NVWA - Professionele Weerbaarheid - Trainers' ? (
+          {selectedDashboard.includes('NVWA') ? (
             <>
               <CopilotIframe />
               <FormGroup

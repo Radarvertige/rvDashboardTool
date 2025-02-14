@@ -5,7 +5,7 @@ export const generateToken = async (members, dashboard) => {
   const secretKey = new TextEncoder().encode(dashboard.key);
 
   // Controleer of het geselecteerde dashboard het specifieke NVWA-dashboard is
-  const isNvwaDashboard = dashboard.name === 'NVWA - Professionele Weerbaarheid - Trainers';
+  const isNvwaDashboard = dashboard.name.includes('NVWA');
 
   // Bouw de payload afhankelijk van het dashboard
   const payload = isNvwaDashboard
