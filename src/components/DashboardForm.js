@@ -11,6 +11,10 @@ import { generateToken } from '../utils/token';
 
 import '../styles/DashboardForm.css';
 
+const replaceSpecialCharacters = (str) => {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/gi, '');
+};
+
 const DashboardForm = () => {
   const { team } = useParams();
   const [dashboards, setDashboards] = useState([]);
@@ -81,9 +85,9 @@ const DashboardForm = () => {
 
     const isNvwaDashboard = selectedDashboard.includes('NVWA');
     
-    // Converteer participants naar een array, als het een string is
+    // Converteer participants naar een array, als het een string is, en vervang speciale tekens
     const participantsArray = participants
-      ? participants.split(',').map(name => name.trim())
+      ? participants.split(',').map(name => replaceSpecialCharacters(name.trim()))
       : [];
 
     const generatedUrls = await generateUrls(dashboard, groupNames, participantsArray, isNvwaDashboard);

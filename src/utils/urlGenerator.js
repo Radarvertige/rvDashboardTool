@@ -1,6 +1,10 @@
 import { generateToken } from './token';
 import { generateShortUrl, getExistingUrl } from './url';
 
+const replaceSpecialCharacters = (str) => {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/gi, '');
+};
+
 export const generateUrls = async (dashboard, groupNames, participants, isNvwaDashboard) => {
   let generatedUrls = [];
   let clipboardText = '';
@@ -8,8 +12,9 @@ export const generateUrls = async (dashboard, groupNames, participants, isNvwaDa
   // Groepen van strings verwerken zoals voorheen
   let groups = groupNames ? groupNames.split(',').map(name => name.trim()) : [];
   
-  // Gebruik participants direct als array
+  // Gebruik participants direct als array en vervang speciale tekens
   let participantsArray = Array.isArray(participants) ? participants : [];
+  participantsArray = participantsArray.map(participant => replaceSpecialCharacters(participant));
 
   if (isNvwaDashboard && participantsArray.length > 0) {
     // Voor het NVWA-dashboard: één URL en één token voor alle deelnemers
