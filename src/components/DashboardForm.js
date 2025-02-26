@@ -6,14 +6,9 @@ import TeamDashboardList from './TeamDashboardList';
 import { generateUrls } from '../utils/urlGenerator';  // Import the updated function
 import { Button } from 'react-bootstrap';
 import UserManualModal from './UserManualModal';
-import CopilotIframe from '../utils/CopilotIframe';
-import { generateToken } from '../utils/token';
+import { useLTI } from '../context/LTIContext';  // Import the context
 
 import '../styles/DashboardForm.css';
-
-const replaceSpecialCharacters = (str) => {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/gi, '');
-};
 
 const DashboardForm = () => {
   const { team } = useParams();
@@ -25,6 +20,7 @@ const DashboardForm = () => {
   const [combinedUrls, setCombinedUrls] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const groupInputRef = useRef(null);
+  const { isLTIDashboard, setIsLTIDashboard } = useLTI();  // Use the context
 
   // Fetch dashboards.json file on component mount
   useEffect(() => {
@@ -58,19 +54,6 @@ const DashboardForm = () => {
     }
   }, [team, dashboards]);
 
-  // Listen for messages from the iframe
-  useEffect(() => {
-    const handleMessage = (event) => {
-      if (event.data.type === 'RESULT_DATA') {
-        setParticipants(event.data.data);
-      }
-    };
-    window.addEventListener('message', handleMessage);
-    return () => {
-      window.removeEventListener('message', handleMessage);
-    };
-  }, []);
-
   const handleGenerateUrls = async () => {
     if (!selectedDashboard) {
       alert("Selecteer een dashboard");
@@ -83,14 +66,15 @@ const DashboardForm = () => {
       return;
     }
 
-    const isNvwaDashboard = selectedDashboard.includes('NVWA');
-    
-    // Converteer participants naar een array, als het een string is, en vervang speciale tekens
+    setIsLTIDashboard(dashboard.LTI);
+    console.log("Selected Dashboard:", dashboard);
+
+    // Converteer participants naar een array, als het een string is
     const participantsArray = participants
-      ? participants.split(',').map(name => replaceSpecialCharacters(name.trim()))
+      ? participants.split(',').map(name => name.trim())
       : [];
 
-    const generatedUrls = await generateUrls(dashboard, groupNames, participantsArray, isNvwaDashboard);
+    const generatedUrls = await generateUrls(dashboard, groupNames, participantsArray, dashboard.LTI);
     setCombinedUrls(generatedUrls);
   };
 
@@ -116,17 +100,25 @@ const DashboardForm = () => {
             type="select"
             options={filteredDashboards.map(dashboard => ({ label: dashboard.name, value: dashboard.name }))}
             placeholder="Kies een dashboard uit de lijst."
+            className="mb-3"  // Add Bootstrap margin-bottom class
           />
-
-          {selectedDashboard.includes('NVWA') ? (
+          
+          {filteredDashboards.find(d => d.name === selectedDashboard)?.LTI ? (
+            
             <>
-              <CopilotIframe />
               <FormGroup
-                label="Vul hier de namen in"
+                label="Vul hier uitvoeringsdatum in"
+                id="Uitvoeringsdatum"
+                value={groupNames}
+                onChange={(e) => setGroupNames(e.target.value)}
+                placeholder=""
+              />
+                <FormGroup
+                label="Vul hier de emailadressen in van de deelnemers"
                 id="participants"
                 value={participants}
                 onChange={(e) => setParticipants(e.target.value)}
-                placeholder="Voer de namen van de deelnemers in, gescheiden door komma's."
+                placeholder=""
               />
             </>
           ) : (

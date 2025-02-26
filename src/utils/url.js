@@ -1,5 +1,3 @@
-import { isDebugMode } from './keyboard';
-
 const YOURLS_API_URL = 'https://rdar.nl/yourls-api.php';
 const YOURLS_SIGNATURE = '157448975e';
 
@@ -7,17 +5,10 @@ export const getExistingUrl = async (keyword) => {
   try {
     const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=expand&format=json&shorturl=${encodeURIComponent(keyword)}`;
 
-    if (isDebugMode()) {
-      console.log(`Request URL to fetch existing URL: ${requestUrl}`);
-    }
-
     const response = await fetch(requestUrl);
     const data = await response.json();
 
     if (data && data.longurl) {
-      if (isDebugMode()) {
-        console.log(`Existing short URL found for keyword "${keyword}": ${data.shorturl} -> ${data.longurl}`);
-      }
       return data.shorturl;
     } else {
       console.error("YOURLS API response did not contain a long URL:", data);
@@ -43,10 +34,6 @@ export const shortenUrl = async (finalUrl, keyword) => {
 
     const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=shorturl&format=json&url=${encodeURIComponent(finalUrl)}&keyword=${encodeURIComponent(keyword)}`;
 
-    if (isDebugMode()) {
-      console.log(`Request URL: ${requestUrl}`);
-    }
-
     const response = await fetch(requestUrl);
     const data = await response.json();
 
@@ -57,9 +44,6 @@ export const shortenUrl = async (finalUrl, keyword) => {
     }
 
     if (data && data.shorturl) {
-      if (isDebugMode()) {
-        console.log(`Shortened URL: ${data.shorturl}`);
-      }
       return data.shorturl;
     } else {
       console.error("YOURLS API response did not contain a short URL:", data);
@@ -76,11 +60,6 @@ export const generateShortUrl = async (token, dashboard, groupName) => {
     const combinedUrl = `${dashboard.url}${token}`;
     const teamName = dashboard.team.replace(/\s+/g, '-').toLowerCase(); // Remove spaces and convert to lowercase
     const keyword = `${teamName}-${groupName.replace(/\s+/g, '-').toLowerCase()}`; // Combine team and group names
-
-    if (isDebugMode()) {
-      console.log(`Keyword (Slug): ${keyword}`);
-      console.log(`Combined URL before shortening: ${combinedUrl}`);
-    }
 
     // Shorten the combined URL using the keyword
     return await shortenUrl(combinedUrl, keyword);

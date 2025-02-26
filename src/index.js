@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate, useParams } from 'rea
 import JWTGenerator from './JWTGenerator';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.css';
+import { LTIProvider } from './context/LTIContext';  // Import the context provider
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -22,19 +23,21 @@ const UppercaseTeam = ({ children }) => {
 
 root.render(
   <React.StrictMode>
-    <Router basename="/">
-      <Routes>
-        <Route 
-          path="/:team" 
-          element={
-            <UppercaseTeam>
-              <JWTGenerator />
-            </UppercaseTeam>
-          } 
-        />
-        <Route path="/" element={<JWTGenerator />} />
-      </Routes>
-    </Router>
+    <LTIProvider>
+      <Router basename="/">
+        <Routes>
+          <Route 
+            path="/:team" 
+            element={
+              <UppercaseTeam>
+                <JWTGenerator />
+              </UppercaseTeam>
+            } 
+          />
+          <Route path="/" element={<JWTGenerator />} />
+        </Routes>
+      </Router>
+    </LTIProvider>
   </React.StrictMode>
 );
 

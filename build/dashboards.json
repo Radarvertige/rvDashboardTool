@@ -4,223 +4,255 @@
         "url": "https://insights.learningpool.com/contexts/2095/shared/",
         "key": "ee5ba3ef-daef-4e73-9c1a-89deed578929",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjk5NTF9.UljJmel6kTDZG5d1BjLSqKU7pHNp03lfq7en9d8mVgs"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjk5NTF9.UljJmel6kTDZG5d1BjLSqKU7pHNp03lfq7en9d8mVgs",
+        "LTI": false
     },
     {
         "name": "Deelname NOG trainingen Utrecht",
         "url": "https://insights.learningpool.com/contexts/2094/shared/",
         "key": "8c039305-ec61-475a-8ef8-d93b12083da1",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjk3Mzh9.EEGKiosC0KItvVnmv53fXLAE_u6QyhH72dN1L98PNSo"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjk3Mzh9.EEGKiosC0KItvVnmv53fXLAE_u6QyhH72dN1L98PNSo",
+        "LTI": false
     },
     {
         "name": "OMEA AMSTERDAM TRAINERS",
         "url": "https://insights.learningpool.com/contexts/2080/shared/",
         "key": "c3172a47-3122-4a7b-8ccd-fbe61771564a",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc1MzN9.GVkVlZWTNDfQH6y5jak26ycWQlLXvoMYAW9xgIIYusA"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc1MzN9.GVkVlZWTNDfQH6y5jak26ycWQlLXvoMYAW9xgIIYusA",
+        "LTI": false
     },
     {
         "name": "HOA - Persoonlijk leerplan gesprek en invullen leerdoelen",
         "url": "https://insights.learningpool.com/contexts/2091/shared/",
         "key": "a3328078-940d-44fe-8969-d78f6c086d9c",
         "team": "LEV",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgyMTF9.wTyRTSdbR5EvjyLUbfR88ykoQGx9SIwUBizoMbZeJGs"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgyMTF9.wTyRTSdbR5EvjyLUbfR88ykoQGx9SIwUBizoMbZeJGs",
+        "LTI": false
     },
     {
         "name": "HOA - Antwoorden op vragen",
         "url": "https://insights.learningpool.com/contexts/2090/shared/",
         "key": "39364bb6-553a-4f71-822a-84c169294427",
         "team": "LEV",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgwNjl9.jCFMfgs9ELogLwXIgcqfrZujfxWhXEcMLyX9gyEyx2E"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgwNjl9.jCFMfgs9ELogLwXIgcqfrZujfxWhXEcMLyX9gyEyx2E",
+        "LTI": false
     },
     {
         "name": "DJI CVT Vraagverheldering",
         "url": "https://insights.learningpool.com/contexts/2089/shared/",
         "key": "71f5d658-6edd-4370-b163-3a7096468bf3",
         "team": "SWSL",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgwMzd9.Qdpbj4aqnOWXtw-lebtKtQnh6FsaBz2wjpHgKrasdvY"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgwMzd9.Qdpbj4aqnOWXtw-lebtKtQnh6FsaBz2wjpHgKrasdvY",
+        "LTI": false
     },
     {
         "name": "DJI CVT gespreksvaardigheden",
         "url": "https://insights.learningpool.com/contexts/2088/shared/",
         "key": "815aecbe-e2dd-48dd-b6e7-23b302a21c8a",
         "team": "SWSL",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgwMDN9.4eDxKDn1-CzcGPSHu3Cgb77my2T1gVBMypvJLtRMCmU"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgwMDN9.4eDxKDn1-CzcGPSHu3Cgb77my2T1gVBMypvJLtRMCmU",
+        "LTI": false
     },
     {
         "name": "DJI CVT SSW",
         "url": "https://insights.learningpool.com/contexts/2086/shared/",
         "key": "2591d9c3-5936-4ac4-b8e1-b6a03ebee798",
         "team": "SWSL",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc5MDV9.PtS-UlMDx7a6XgnzrYzb_dbOqvdlKsOWc22y179OrVQ"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc5MDV9.PtS-UlMDx7a6XgnzrYzb_dbOqvdlKsOWc22y179OrVQ",
+        "LTI": false
     },
     {
         "name": "DJI CVT Weerstand",
         "url": "https://insights.learningpool.com/contexts/2085/shared/",
         "key": "5c9b84a1-f166-4dff-a771-922b2a157edf",
         "team": "SWSL",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc4Njd9.KWI1t5zr58Aa-er-c2PZE_Tx3j6tlC2vKz2-q51Coyg"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc4Njd9.KWI1t5zr58Aa-er-c2PZE_Tx3j6tlC2vKz2-q51Coyg",
+        "LTI": false
     },
     {
         "name": "Dashboard  (8)",
         "url": "https://insights.learningpool.com/contexts/2084/shared/",
         "key": "61397308-1033-426e-bfb2-cda9ff1d4a2b",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc3OTR9.dl7w90lz_NQuZVnEY-JvQ9roYZwEmOZOLupYwOI2PAA"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc3OTR9.dl7w90lz_NQuZVnEY-JvQ9roYZwEmOZOLupYwOI2PAA",
+        "LTI": false
     },
     {
         "name": "Dashboard  (9)",
         "url": "https://insights.learningpool.com/contexts/2083/shared/",
         "key": "240f4522-296e-4abf-b370-5240e520dfc0",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc2ODZ9.wQUpiBgbJwVPqpmIXE-h73anBHczkM9-VUFbrm0nEGg"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc2ODZ9.wQUpiBgbJwVPqpmIXE-h73anBHczkM9-VUFbrm0nEGg",
+        "LTI": false
     },
     {
         "name": "Deelname OMEA trainingen Amsterdam",
         "url": "https://insights.learningpool.com/contexts/2082/shared/",
         "key": "ea1d70ad-650c-4758-a674-abe11b334a13",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc2MjJ9.Y_grEdsFXSTajmBX0Erkf-Wzb-hTXU8M9G0pAC_7Nq0"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc2MjJ9.Y_grEdsFXSTajmBX0Erkf-Wzb-hTXU8M9G0pAC_7Nq0",
+        "LTI": false
     },
     {
         "name": "NOG TRAINERS Utrecht",
         "url": "https://insights.learningpool.com/contexts/2081/shared/",
         "key": "6faea7e5-c206-4bbe-bd55-9a5afb5c35ae",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc1OTh9.SJyxe2Owja2Wk2yP2ciER-IrrPmdogs7ZfuMZ9dq5MA"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc1OTh9.SJyxe2Owja2Wk2yP2ciER-IrrPmdogs7ZfuMZ9dq5MA",
+        "LTI": false
     },
     {
         "name": "NOG LEIDINGGEVENDEN Utrecht",
         "url": "https://insights.learningpool.com/contexts/2079/shared/",
         "key": "6b7ee7a2-2fe2-45c4-b3b1-1fd0b1d834e6",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc0NzZ9._nfnvXjMEt9SZd9dTKQysUdIfZ7ZGisJ4r_7UJw8s-U"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0Mjc0NzZ9._nfnvXjMEt9SZd9dTKQysUdIfZ7ZGisJ4r_7UJw8s-U",
+        "LTI": false
     },
     {
         "name": "HOA - Praktijkbegeleiders Den Haag",
         "url": "https://insights.learningpool.com/contexts/2061/shared/",
         "key": "f6365a5c-1bf0-4ff5-b0b8-eca0911e656d",
         "team": "LEV",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU1Njl9.z-SAjfNvM2GetZv6Mxj3xoaHpQ_VvlmvdICWShvwQSU"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU1Njl9.z-SAjfNvM2GetZv6Mxj3xoaHpQ_VvlmvdICWShvwQSU",
+        "LTI": false
     },
     {
         "name": "Deelname OMEA markt trainingen Amsterdam",
         "url": "https://insights.learningpool.com/contexts/2062/shared/",
         "key": "98d6f4c7-d27d-4c67-8c66-0dadf46589f3",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU2ODR9.rk_BNyjvAyQxwuSKzicRvyuBcvKBPb2rzklO-TE5GhE"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU2ODR9.rk_BNyjvAyQxwuSKzicRvyuBcvKBPb2rzklO-TE5GhE",
+        "LTI": false
     },
     {
         "name": "Effectmeting trainingen NOG gemeente Utrecht",
         "url": "https://insights.learningpool.com/contexts/2063/shared/",
         "key": "1ff0e548-ec46-4fc6-bb01-c21a6b698986",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU3Njd9.7yLeBDr9IodZLuP3a7MQXYdDgxpISLrtMzyG-kPxJlU"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU3Njd9.7yLeBDr9IodZLuP3a7MQXYdDgxpISLrtMzyG-kPxJlU",
+        "LTI": false
     },
     {
         "name": "NVWA - Professionele Weerbaarheid - Trainers",
         "url": "https://insights.learningpool.com/contexts/2064/shared/",
         "key": "ddba3777-9b98-4428-9a8a-66e1eacefd68",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU4MTJ9.qrL7DQ477CohVB1L0IfLhQK4V3S6u3rFFHcwj9wxZ8A"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU4MTJ9.qrL7DQ477CohVB1L0IfLhQK4V3S6u3rFFHcwj9wxZ8A",
+        "LTI": true
     },
     {
         "name": "Startopleiding HTV-groep",
         "url": "https://insights.learningpool.com/contexts/2066/shared/",
         "key": "e0f2289b-5111-4db9-a2d1-b8fc4fdfefea",
         "team": "LEV",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYxNDB9.NexdtA_-dPhlaFI44lmbCCxDLs6ykJSeUX5nQxELJrQ"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYxNDB9.NexdtA_-dPhlaFI44lmbCCxDLs6ykJSeUX5nQxELJrQ",
+        "LTI": false
     },
     {
         "name": "BREDA - TRAINERS - Omgaan met Emotie en Agressie",
         "url": "https://insights.learningpool.com/contexts/2065/shared/",
         "key": "f1a4e3fa-0673-40ec-9829-43b89565c1c7",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYwODl9.smZgjB_h6wxG8wP-U4I3tDMsmACOdv_5AnQTyA8jo8k"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYwODl9.smZgjB_h6wxG8wP-U4I3tDMsmACOdv_5AnQTyA8jo8k",
+        "LTI": false
     },
     {
         "name": "NVWA- Professionele Weerbaardheid - Veiligheidsdag I.O.D.",
         "url": "https://insights.learningpool.com/contexts/2067/shared/",
         "key": "70b008c1-081b-4141-bbeb-6d7d9af94636",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYxNzl9.P-bI8RcUeT5z0Tfy9WjpyX9gd1ZXHJGcGVPUD1lMHdA"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYxNzl9.P-bI8RcUeT5z0Tfy9WjpyX9gd1ZXHJGcGVPUD1lMHdA",
+        "LTI": true
     },
     {
         "name": "NVWA - Professionele Weerbaardheid - Permanante Her en Bijscholing",
         "url": "https://insights.learningpool.com/contexts/2068/shared/",
         "key": "21da2b37-b1f1-4867-8e1c-42c8b822017d",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYyMzZ9.2BY3DnbfuBlzqr62qIzrJ9SXoypBGBazmuSVXTDkuhc"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYyMzZ9.2BY3DnbfuBlzqr62qIzrJ9SXoypBGBazmuSVXTDkuhc",
+        "LTI": true
     },
     {
-        "name": "Dashboard  (21)",
+        "name": "AW - Voorne aan Zee - Omgaan met Emotie en Agressie",
         "url": "https://insights.learningpool.com/contexts/2069/shared/",
         "key": "0bc00aeb-80ea-4a29-a4d9-70accb29d7e8",
-        "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYyODV9.RnFJD7Hkxrggle4ZN5y-ALdFO_UnxTM5zkVYtywtRJs"
+        "team": "AW",
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYyODV9.RnFJD7Hkxrggle4ZN5y-ALdFO_UnxTM5zkVYtywtRJs",
+        "LTI": false
     },
     {
         "name": "Dashboard  (22)",
         "url": "https://insights.learningpool.com/contexts/2070/shared/",
         "key": "1e292312-e889-4edc-8538-848193af137a",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYzMjl9.AHEunSFh8gkoIN1mMrKXQOyrYiGEad6iy7QUZ7sdoy8"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYzMjl9.AHEunSFh8gkoIN1mMrKXQOyrYiGEad6iy7QUZ7sdoy8",
+        "LTI": false
     },
     {
         "name": "Dashboard  (23)",
         "url": "https://insights.learningpool.com/contexts/2071/shared/",
         "key": "c163a6cb-a958-4980-8d98-da4c684303a3",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYzNzF9.IsysLhrhGEjFc21ezrGQK8Tpuicq-XpdIQX-BJNlBe8"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYzNzF9.IsysLhrhGEjFc21ezrGQK8Tpuicq-XpdIQX-BJNlBe8",
+        "LTI": false
     },
     {
         "name": "Dashboard  (24)",
         "url": "https://insights.learningpool.com/contexts/2072/shared/",
         "key": "766fe14f-edf5-4c25-a5ff-0a517c757856",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY0MDZ9.I3mlDV1CmWwn16Kqzo0hcjcdqEE8QxSGSoXD_VdgeX8"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY0MDZ9.I3mlDV1CmWwn16Kqzo0hcjcdqEE8QxSGSoXD_VdgeX8",
+        "LTI": false
     },
     {
         "name": "Dashboard  (25)",
         "url": "https://insights.learningpool.com/contexts/2073/shared/",
         "key": "78586090-6fed-4b6b-bc91-84e6caa4eda8",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY0OTV9.BU7F3IEeVyKxAQCfigVYiqoMQxcduLIw0QFOFNhFUO0"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY0OTV9.BU7F3IEeVyKxAQCfigVYiqoMQxcduLIw0QFOFNhFUO0",
+        "LTI": false
     },
     {
         "name": "Dashboard  (26)",
         "url": "https://insights.learningpool.com/contexts/2074/shared/",
         "key": "ed5ab5a0-8e36-4c32-86e3-bd0be479651f",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY1Mjd9.lb5tpasQFJfNY73T-pQQu82E8hEqU5SrpXKKEBL30Yg"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY1Mjd9.lb5tpasQFJfNY73T-pQQu82E8hEqU5SrpXKKEBL30Yg",
+        "LTI": false
     },
     {
         "name": "Dashboard  (27)",
         "url": "https://insights.learningpool.com/contexts/2075/shared/",
         "key": "21e7cb12-dd1c-41d8-b7f3-6d43c874b1b4",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY1Njl9.XnnIhxPBL97VrYzcTr2ElZVbG6sw9M1fSrg7RILPwb0"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY1Njl9.XnnIhxPBL97VrYzcTr2ElZVbG6sw9M1fSrg7RILPwb0",
+        "LTI": false
     },
     {
         "name": "Dashboard  (28)",
         "url": "https://insights.learningpool.com/contexts/2076/shared/",
         "key": "2e826a87-b336-4710-9867-4c98a85dc345",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3MTV9.nZGkKvFSs-Jdb_FSRM5jTvyWhcDxoV0jL6le9_PAd0s"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3MTV9.nZGkKvFSs-Jdb_FSRM5jTvyWhcDxoV0jL6le9_PAd0s",
+        "LTI": false
     },
     {
         "name": "Dashboard  (29)",
         "url": "https://insights.learningpool.com/contexts/2077/shared/",
         "key": "f58f0195-4c4e-481a-99a2-9d1dbf2d0fc8",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3NDh9.TcZrAtCZUwg47mJhGLTLClPAqo2oi2y81_y8aj8FiOA"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3NDh9.TcZrAtCZUwg47mJhGLTLClPAqo2oi2y81_y8aj8FiOA",
+        "LTI": false
     },
     {
         "name": "Dashboard  (30)",
         "url": "https://insights.learningpool.com/contexts/2078/shared/",
         "key": "51877615-75f4-414a-b8a5-ca047c64fb8a",
         "team": "",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3ODB9.Yv9MtqEzBMHWgYKzI32HwM26PIIgX6HwBr4DZTm0OFE"
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3ODB9.Yv9MtqEzBMHWgYKzI32HwM26PIIgX6HwBr4DZTm0OFE",
+        "LTI": false
     }
 ]

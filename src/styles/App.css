@@ -32,6 +32,10 @@ button:hover {
 h2 {
   margin-top: 20px;
 }
+.form-group {
+  margin: 10px;
+  background-color: #282c34;
+}
 /* Stijlen voor de react-select component */
 .react-select__control {
   background-color: #343a40 !important; /* Donkere achtergrondkleur */

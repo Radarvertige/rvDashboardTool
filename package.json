@@ -11,7 +11,7 @@
     "jose": "^5.7.0",
     "node-yourls": "^1.0.4",
     "react": "^18.3.1",
-    "react-bootstrap": "^2.10.4",
+    "react-bootstrap": "^2.10.6",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
     "react-scripts": "^5.0.1",

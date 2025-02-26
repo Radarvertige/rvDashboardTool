@@ -1,25 +1,23 @@
 import { generateToken } from './token';
 import { generateShortUrl, getExistingUrl } from './url';
 
-const replaceSpecialCharacters = (str) => {
-  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/gi, '');
-};
-
-export const generateUrls = async (dashboard, groupNames, participants, isNvwaDashboard) => {
+export const generateUrls = async (dashboard, groupNames, participants, isLTIDashboard) => {
   let generatedUrls = [];
   let clipboardText = '';
 
   // Groepen van strings verwerken zoals voorheen
   let groups = groupNames ? groupNames.split(',').map(name => name.trim()) : [];
   
-  // Gebruik participants direct als array en vervang speciale tekens
+  // Gebruik participants direct als array
   let participantsArray = Array.isArray(participants) ? participants : [];
-  participantsArray = participantsArray.map(participant => replaceSpecialCharacters(participant));
 
-  if (isNvwaDashboard && participantsArray.length > 0) {
-    // Voor het NVWA-dashboard: één URL en één token voor alle deelnemers
-    const keyword = dashboard.name.replace(/\s+/g, '-').toLowerCase();
-    console.log(`Generated Keyword for NVWA Dashboard with Participants: ${keyword}`);
+  if (isLTIDashboard && participantsArray.length > 0) {
+    // Voeg 'mailto:' toe aan elke participant email en vervang spaties door komma's
+    participantsArray = participantsArray.join(' ').split(' ').map(email => `mailto:${email.trim()}`);
+
+    // Voor het LTI-dashboard: één URL en één token voor alle deelnemers
+    const keyword = `${dashboard.team.replace(/\s+/g, '-').toLowerCase()}-${groups.join('-').replace(/\s+/g, '-').toLowerCase()}`;
+    console.log(`Generated Keyword for LTI Dashboard with Participants: ${keyword}`);
 
     const existingUrl = await getExistingUrl(keyword);
     if (existingUrl) {
@@ -28,7 +26,7 @@ export const generateUrls = async (dashboard, groupNames, participants, isNvwaDa
       clipboardText += `URL: ${existingUrl}\n\n`;
     } else {
       const token = await generateToken(participantsArray, dashboard);
-      const finalUrl = await generateShortUrl(token, dashboard, keyword);
+      const finalUrl = await generateShortUrl(token, dashboard, keyword) || token;
       if (finalUrl) {
         generatedUrls.push({ group: '', url: finalUrl, team: dashboard.team });
         clipboardText += `URL: ${finalUrl}\n\n`;
