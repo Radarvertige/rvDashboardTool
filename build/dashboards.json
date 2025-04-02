@@ -184,12 +184,12 @@
         "LTI": false
     },
     {
-        "name": "Dashboard  (22)",
+        "name": "AW - NVWA - Professionele Weerbaardheid - Teamleiders",
         "url": "https://insights.learningpool.com/contexts/2070/shared/",
         "key": "1e292312-e889-4edc-8538-848193af137a",
-        "team": "",
+        "team": "AW",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYzMjl9.AHEunSFh8gkoIN1mMrKXQOyrYiGEad6iy7QUZ7sdoy8",
-        "LTI": false
+        "LTI": true
     },
     {
         "name": "Dashboard  (23)",
