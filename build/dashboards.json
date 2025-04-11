@@ -200,12 +200,12 @@
         "LTI": false
     },
     {
-        "name": "Dashboard  (24)",
+        "name": "AW - Zaanstad - Omgaan met Emotie en Agressie",
         "url": "https://insights.learningpool.com/contexts/2072/shared/",
         "key": "766fe14f-edf5-4c25-a5ff-0a517c757856",
-        "team": "",
+        "team": "AW",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY0MDZ9.I3mlDV1CmWwn16Kqzo0hcjcdqEE8QxSGSoXD_VdgeX8",
-        "LTI": false
+        "LTI": true
     },
     {
         "name": "Dashboard  (25)",
