@@ -208,12 +208,12 @@
         "LTI": true
     },
     {
-        "name": "Dashboard  (25)",
+        "name": "AW - NVWA- Professionele Weerbaardheid - Alcohol en tabaksteams",
         "url": "https://insights.learningpool.com/contexts/2073/shared/",
         "key": "78586090-6fed-4b6b-bc91-84e6caa4eda8",
-        "team": "",
+        "team": "AW",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY0OTV9.BU7F3IEeVyKxAQCfigVYiqoMQxcduLIw0QFOFNhFUO0",
-        "LTI": false
+        "LTI": true
     },
     {
         "name": "Dashboard  (26)",
