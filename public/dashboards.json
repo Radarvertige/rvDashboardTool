@@ -232,7 +232,7 @@
         "LTI": false
     },
     {
-        "name": "Dashboard  (28)",
+        "name": "AW - NVWA - ",
         "url": "https://insights.learningpool.com/contexts/2076/shared/",
         "key": "2e826a87-b336-4710-9867-4c98a85dc345",
         "team": "",
@@ -248,10 +248,10 @@
         "LTI": false
     },
     {
-        "name": "Dashboard  (30)",
+        "name": "Interculturele communicatie",
         "url": "https://insights.learningpool.com/contexts/2078/shared/",
         "key": "51877615-75f4-414a-b8a5-ca047c64fb8a",
-        "team": "",
+        "team": "AW",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3ODB9.Yv9MtqEzBMHWgYKzI32HwM26PIIgX6HwBr4DZTm0OFE",
         "LTI": false
     }
