@@ -120,10 +120,10 @@
         "LTI": false
     },
     {
-        "name": "Deelname OMEA markt trainingen Amsterdam",
+        "name": "Dashboard (14)",
         "url": "https://insights.learningpool.com/contexts/2062/shared/",
         "key": "98d6f4c7-d27d-4c67-8c66-0dadf46589f3",
-        "team": "AW",
+        "team": "",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU2ODR9.rk_BNyjvAyQxwuSKzicRvyuBcvKBPb2rzklO-TE5GhE",
         "LTI": false
     },
@@ -144,10 +144,10 @@
         "LTI": true
     },
     {
-        "name": "Startopleiding HTV-groep",
+        "name": "Intakes Leeuwarden",
         "url": "https://insights.learningpool.com/contexts/2066/shared/",
         "key": "e0f2289b-5111-4db9-a2d1-b8fc4fdfefea",
-        "team": "LEV",
+        "team": "SWSL",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYxNDB9.NexdtA_-dPhlaFI44lmbCCxDLs6ykJSeUX5nQxELJrQ",
         "LTI": false
     },
