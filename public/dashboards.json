@@ -176,7 +176,7 @@
         "LTI": true
     },
     {
-        "name": "AW - Voorne aan Zee - Omgaan met Emotie en Agressie",
+        "name": "Voorne aan Zee - Omgaan met Emotie en Agressie",
         "url": "https://insights.learningpool.com/contexts/2069/shared/",
         "key": "0bc00aeb-80ea-4a29-a4d9-70accb29d7e8",
         "team": "AW",
@@ -184,7 +184,7 @@
         "LTI": false
     },
     {
-        "name": "AW - NVWA - Professionele Weerbaardheid - Teamleiders",
+        "name": "NVWA - Professionele Weerbaardheid - Teamleiders",
         "url": "https://insights.learningpool.com/contexts/2070/shared/",
         "key": "1e292312-e889-4edc-8538-848193af137a",
         "team": "AW",
@@ -200,7 +200,7 @@
         "LTI": false
     },
     {
-        "name": "AW - Zaanstad - Omgaan met Emotie en Agressie",
+        "name": "Zaanstad - Omgaan met Emotie en Agressie",
         "url": "https://insights.learningpool.com/contexts/2072/shared/",
         "key": "766fe14f-edf5-4c25-a5ff-0a517c757856",
         "team": "AW",
@@ -208,7 +208,7 @@
         "LTI": true
     },
     {
-        "name": "AW - NVWA- Professionele Weerbaardheid - Alcohol en tabaksteams",
+        "name": "NVWA- Professionele Weerbaardheid - Alcohol en tabaksteams",
         "url": "https://insights.learningpool.com/contexts/2073/shared/",
         "key": "78586090-6fed-4b6b-bc91-84e6caa4eda8",
         "team": "AW",
@@ -232,10 +232,10 @@
         "LTI": false
     },
     {
-        "name": "AW - NVWA - ",
+        "name": "NVWA- Professionele Weerbaardheid - AT Evaluaties",
         "url": "https://insights.learningpool.com/contexts/2076/shared/",
         "key": "2e826a87-b336-4710-9867-4c98a85dc345",
-        "team": "",
+        "team": "AW",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3MTV9.nZGkKvFSs-Jdb_FSRM5jTvyWhcDxoV0jL6le9_PAd0s",
         "LTI": false
     },
