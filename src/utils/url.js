@@ -29,7 +29,7 @@ export const shortenUrl = async (finalUrl, keyword) => {
     const existingUrl = await getExistingUrl(keyword);
     if (existingUrl) {
       console.log(`Short URL already exists: ${existingUrl}`);
-      return existingUrl;
+      return { url: existingUrl, isExisting: true };
     }
 
     const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=shorturl&format=json&url=${encodeURIComponent(finalUrl)}&keyword=${encodeURIComponent(keyword)}`;
@@ -38,31 +38,35 @@ export const shortenUrl = async (finalUrl, keyword) => {
     const data = await response.json();
 
     if (data && data.status === "fail" && data.code === "error:keyword") {
-      console.warn(`Keyword conflict detected: ${data.message}`);
-      // If a keyword conflict occurs, return the existing URL
-      return await getExistingUrl(keyword);
+      // If a keyword conflict occurs, get the existing URL
+      const existingUrl = await getExistingUrl(keyword);
+      const urlToReturn = existingUrl || `https://rdar.nl/${keyword}`;
+      console.warn('Add.');
+      console.log(`URL: ${urlToReturn}`);
+      return { url: urlToReturn, isExisting: true };
     }
 
     if (data && data.shorturl) {
-      return data.shorturl;
+      return { url: data.shorturl, isExisting: false };
     } else {
       console.error("YOURLS API response did not contain a short URL:", data);
-      return finalUrl;  // Return the original final URL if shortening fails
+      return { url: finalUrl, isExisting: false };  // Return the original final URL if shortening fails
     }
   } catch (error) {
     console.error(`Error shortening URL:`, error);
-    return finalUrl;  // Return the original final URL if an error occurs
+    return { url: finalUrl, isExisting: false };  // Return the original final URL if an error occurs
   }
 };
 
 export const generateShortUrl = async (token, dashboard, groupName) => {
   try {
     const combinedUrl = `${dashboard.url}${token}`;
-    const teamName = dashboard.team.replace(/\s+/g, '-').toLowerCase(); // Remove spaces and convert to lowercase
-    const keyword = `${teamName}-${groupName.replace(/\s+/g, '-').toLowerCase()}`; // Combine team and group names
+    const teamName = dashboard.team.replace(/\s+/g, '').toLowerCase(); // Remove spaces and convert to lowercase
+    const keyword = `${teamName}${groupName.replace(/\s+/g, '').toLowerCase()}`; // Combine team and group names without hyphen
 
     // Shorten the combined URL using the keyword
-    return await shortenUrl(combinedUrl, keyword);
+    const result = await shortenUrl(combinedUrl, keyword);
+    return result;
 
   } catch (error) {
     console.error(`Error generating short URL:`, error);

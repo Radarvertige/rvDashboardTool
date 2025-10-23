@@ -1,0 +1,19 @@
+.text-warning {
+  color: #67486F;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+  border-left: 4px solid #67486F;
+}
+
+.url-link {
+  display: block;
+  margin: 10px 0;
+  color: #573561;
+  text-decoration: none;
+}
+
+.url-link:hover {
+  text-decoration: underline;
+}

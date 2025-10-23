@@ -16,7 +16,7 @@ export const generateUrls = async (dashboard, groupNames, participants, isLTIDas
     participantsArray = participantsArray.join(' ').split(' ').map(email => `mailto:${email.trim()}`);
 
     // Voor het LTI-dashboard: één URL en één token voor alle deelnemers
-    const keyword = `${dashboard.team.replace(/\s+/g, '-').toLowerCase()}-${groups.join('-').replace(/\s+/g, '-').toLowerCase()}`;
+    const keyword = `${dashboard.team.replace(/\s+/g, '').toLowerCase()}${groups.join('').replace(/\s+/g, '').toLowerCase()}`;
     console.log(`Generated Keyword for LTI Dashboard with Participants: ${keyword}`);
 
     const existingUrl = await getExistingUrl(keyword);
@@ -41,14 +41,17 @@ export const generateUrls = async (dashboard, groupNames, participants, isLTIDas
         const existingUrl = await getExistingUrl(keyword);
         if (existingUrl) {
           console.log(`Existing URL found: ${existingUrl}`);
-          generatedUrls.push({ group, url: existingUrl, team: dashboard.team });
-          clipboardText += `Groep: ${group}\nURL: ${existingUrl}\n\n`;
+          generatedUrls.push({ group, url: existingUrl, team: dashboard.team, isExisting: true });
+          clipboardText += `Groep: ${group}\nURL: ${existingUrl}\n\nVoor deze groep is een link reeds aanwezig in de database, of is gereserveerd.\n\n`;
         } else {
           const token = await generateToken(group, dashboard);
-          const finalUrl = await generateShortUrl(token, dashboard, keyword);
-          if (finalUrl) {
-            generatedUrls.push({ group, url: finalUrl, team: dashboard.team });
-            clipboardText += `Groep: ${group}\nURL: ${finalUrl}\n\n`;
+          const result = await generateShortUrl(token, dashboard, keyword);
+          if (result) {
+            generatedUrls.push({ group, url: result.url, team: dashboard.team, isExisting: result.isExisting });
+            clipboardText += `Groep: ${group}\nURL: ${result.url}\n\n`;
+            if (result.isExisting) {
+              clipboardText += 'Voor deze groep is een link reeds aanwezig in de database, of is gereserveerd.\n\n';
+            }
           }
         }
       }
