@@ -58,14 +58,16 @@ export const shortenUrl = async (finalUrl, keyword) => {
   }
 };
 
-export const generateShortUrl = async (token, dashboard, groupName) => {
+export const generateShortUrl = async (token, dashboard, keyword) => {
   try {
     const combinedUrl = `${dashboard.url}${token}`;
-    const teamName = dashboard.team.replace(/\s+/g, '').toLowerCase(); // Remove spaces and convert to lowercase
-    const keyword = `${teamName}${groupName.replace(/\s+/g, '').toLowerCase()}`; // Combine team and group names without hyphen
+    const sanitizedKeyword = (keyword || '')
+      .toString()
+      .replace(/[\s-]+/g, '')
+      .toLowerCase();
 
-    // Shorten the combined URL using the keyword
-    const result = await shortenUrl(combinedUrl, keyword);
+    // Shorten the combined URL using the sanitized keyword
+    const result = await shortenUrl(combinedUrl, sanitizedKeyword);
     return result;
 
   } catch (error) {
