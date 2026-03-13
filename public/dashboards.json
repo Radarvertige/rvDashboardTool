@@ -1,6 +1,6 @@
 [
     {
-        "name": "VPD voor leidinggevenden WeI gemeente Utrecht",
+        "name": "Utrecht WeI - VPD voor leidinggevenden WeI gemeente ",
         "url": "https://insights.learningpool.com/contexts/2095/shared/",
         "key": "ee5ba3ef-daef-4e73-9c1a-89deed578929",
         "team": "AW",
@@ -8,7 +8,7 @@
         "LTI": false
     },
     {
-        "name": "Deelname NOG trainingen Utrecht",
+        "name": "Utrecht - Deelname NOG trainingen",
         "url": "https://insights.learningpool.com/contexts/2094/shared/",
         "key": "8c039305-ec61-475a-8ef8-d93b12083da1",
         "team": "AW",
@@ -16,7 +16,7 @@
         "LTI": false
     },
     {
-        "name": "OMEA AMSTERDAM TRAINERS",
+        "name": "Amsterdam - OMEA TRAINERS",
         "url": "https://insights.learningpool.com/contexts/2080/shared/",
         "key": "c3172a47-3122-4a7b-8ccd-fbe61771564a",
         "team": "AW",
@@ -40,7 +40,7 @@
         "LTI": false
     },
     {
-        "name": "DJI CVT Vraagverheldering",
+        "name": "DJI CVT - Vraagverheldering",
         "url": "https://insights.learningpool.com/contexts/2089/shared/",
         "key": "71f5d658-6edd-4370-b163-3a7096468bf3",
         "team": "SWSL",
@@ -48,7 +48,7 @@
         "LTI": false
     },
     {
-        "name": "DJI CVT gespreksvaardigheden",
+        "name": "DJI CVT - Gespreksvaardigheden",
         "url": "https://insights.learningpool.com/contexts/2088/shared/",
         "key": "815aecbe-e2dd-48dd-b6e7-23b302a21c8a",
         "team": "SWSL",
@@ -56,7 +56,7 @@
         "LTI": false
     },
     {
-        "name": "DJI CVT SSW",
+        "name": "DJI CVT - SSW",
         "url": "https://insights.learningpool.com/contexts/2086/shared/",
         "key": "2591d9c3-5936-4ac4-b8e1-b6a03ebee798",
         "team": "SWSL",
@@ -64,7 +64,7 @@
         "LTI": false
     },
     {
-        "name": "DJI CVT Weerstand",
+        "name": "DJI CVT - Weerstand",
         "url": "https://insights.learningpool.com/contexts/2085/shared/",
         "key": "5c9b84a1-f166-4dff-a771-922b2a157edf",
         "team": "SWSL",
@@ -88,7 +88,7 @@
         "LTI": false
     },
     {
-        "name": "Deelname OMEA trainingen Amsterdam",
+        "name": "Amsterdam - Deelname OMEA trainingen ",
         "url": "https://insights.learningpool.com/contexts/2082/shared/",
         "key": "ea1d70ad-650c-4758-a674-abe11b334a13",
         "team": "AW",
@@ -96,7 +96,7 @@
         "LTI": false
     },
     {
-        "name": "NOG TRAINERS Utrecht",
+        "name": "Utrecht - NOG TRAINERS ",
         "url": "https://insights.learningpool.com/contexts/2081/shared/",
         "key": "6faea7e5-c206-4bbe-bd55-9a5afb5c35ae",
         "team": "AW",
@@ -104,7 +104,7 @@
         "LTI": false
     },
     {
-        "name": "NOG LEIDINGGEVENDEN Utrecht",
+        "name": "Utrecht - NOG LEIDINGGEVENDEN Utrecht",
         "url": "https://insights.learningpool.com/contexts/2079/shared/",
         "key": "6b7ee7a2-2fe2-45c4-b3b1-1fd0b1d834e6",
         "team": "AW",
@@ -112,10 +112,10 @@
         "LTI": false
     },
     {
-        "name": "HOA - Praktijkbegeleiders Den Haag",
+        "name": "Stadskanaal - AIT",
         "url": "https://insights.learningpool.com/contexts/2061/shared/",
         "key": "f6365a5c-1bf0-4ff5-b0b8-eca0911e656d",
-        "team": "LEV",
+        "team": "AW",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU1Njl9.z-SAjfNvM2GetZv6Mxj3xoaHpQ_VvlmvdICWShvwQSU",
         "LTI": false
     },
@@ -128,7 +128,7 @@
         "LTI": false
     },
     {
-        "name": "Effectmeting trainingen NOG gemeente Utrecht",
+        "name": "Utrecht - Effectmeting trainingen NOG gemeente ",
         "url": "https://insights.learningpool.com/contexts/2063/shared/",
         "key": "1ff0e548-ec46-4fc6-bb01-c21a6b698986",
         "team": "AW",
@@ -144,7 +144,7 @@
         "LTI": true
     },
     {
-        "name": "Intakes Leeuwarden",
+        "name": "Leeuwarden - Intakes",
         "url": "https://insights.learningpool.com/contexts/2066/shared/",
         "key": "e0f2289b-5111-4db9-a2d1-b8fc4fdfefea",
         "team": "SWSL",
@@ -152,7 +152,7 @@
         "LTI": false
     },
     {
-        "name": "BREDA - TRAINERS - Omgaan met Emotie en Agressie",
+        "name": "Breda - Omgaan met Emotie en Agressie",
         "url": "https://insights.learningpool.com/contexts/2065/shared/",
         "key": "f1a4e3fa-0673-40ec-9829-43b89565c1c7",
         "team": "AW",
@@ -160,7 +160,7 @@
         "LTI": false
     },
     {
-        "name": "NVWA- Professionele Weerbaardheid - Veiligheidsdag I.O.D.",
+        "name": "NVWA - Professionele Weerbaardheid - Veiligheidsdag I.O.D.",
         "url": "https://insights.learningpool.com/contexts/2067/shared/",
         "key": "70b008c1-081b-4141-bbeb-6d7d9af94636",
         "team": "AW",
@@ -232,7 +232,7 @@
         "LTI": false
     },
     {
-        "name": "NVWA- Professionele Weerbaardheid - AT Evaluaties",
+        "name": "NVWA - Professionele Weerbaardheid - AT Evaluaties",
         "url": "https://insights.learningpool.com/contexts/2076/shared/",
         "key": "2e826a87-b336-4710-9867-4c98a85dc345",
         "team": "AW",
@@ -248,7 +248,7 @@
         "LTI": false
     },
     {
-        "name": "Interculturele communicatie",
+        "name": "AW - Interculturele communicatie",
         "url": "https://insights.learningpool.com/contexts/2078/shared/",
         "key": "51877615-75f4-414a-b8a5-ca047c64fb8a",
         "team": "AW",
