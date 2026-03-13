@@ -240,10 +240,10 @@
         "LTI": false
     },
     {
-        "name": "Dashboard  (29)",
+        "name": "SWSL - MGV en SSW",
         "url": "https://insights.learningpool.com/contexts/2077/shared/",
         "key": "f58f0195-4c4e-481a-99a2-9d1dbf2d0fc8",
-        "team": "",
+        "team": "SWSL",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3NDh9.TcZrAtCZUwg47mJhGLTLClPAqo2oi2y81_y8aj8FiOA",
         "LTI": false
     },
