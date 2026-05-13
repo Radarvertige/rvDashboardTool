@@ -1,81 +1,92 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import FormGroup from './FormGroup';
+import React, { useState } from 'react';
 import DashboardLinkList from './DashboardLinkList';
-import TeamDashboardList from './TeamDashboardList';
-import { generateUrls } from '../utils/urlGenerator';  // Import the updated function
-import { Button } from 'react-bootstrap';
+import { generateUrls } from '../utils/urlGenerator';
 import UserManualModal from './UserManualModal';
-import { useLTI } from '../context/LTIContext';  // Import the context
+import { parseCommaSeparatedValues, parseParticipantEmails } from '../utils/validation';
+import DashboardSelector from './dashboard-form/DashboardSelector';
+import DashboardInputFields from './dashboard-form/DashboardInputFields';
+import DashboardStatus from './dashboard-form/DashboardStatus';
+import DashboardActions from './dashboard-form/DashboardActions';
 
 import '../styles/DashboardForm.css';
 
-const DashboardForm = () => {
-  const { team } = useParams();
-  const [dashboards, setDashboards] = useState([]);
-  const [filteredDashboards, setFilteredDashboards] = useState([]);
+const DashboardForm = ({ dashboards = [] }) => {
   const [groupNames, setGroupNames] = useState('');
   const [participants, setParticipants] = useState('');
   const [selectedDashboard, setSelectedDashboard] = useState('');
   const [combinedUrls, setCombinedUrls] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const groupInputRef = useRef(null);
-  const { isLTIDashboard, setIsLTIDashboard } = useLTI();  // Use the context
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [status, setStatus] = useState({ type: '', message: '' });
 
-  // Fetch dashboards.json file on component mount
-  useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/dashboards.json`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setDashboards(data);
-      })
-      .catch(error => {
-        console.error('Error fetching dashboards.json:', error);
-      });
-  }, []);
-
-  // Filter dashboards based on the team from the URL params
-  useEffect(() => {
-    if (team) {
-      const filtered = dashboards
-        .filter(dashboard => dashboard.team === team)
-        .sort((a, b) => a.name.localeCompare(b.name));
-      setFilteredDashboards(filtered);
-    } else {
-      const filtered = dashboards
-        .filter(dashboard => dashboard.team)
-        .sort((a, b) => a.name.localeCompare(b.name));
-      setFilteredDashboards(filtered);
-    }
-  }, [team, dashboards]);
+  const selectedDashboardConfig = dashboards.find((dashboard) => dashboard.name === selectedDashboard);
 
   const handleGenerateUrls = async () => {
+    setStatus({ type: '', message: '' });
+
     if (!selectedDashboard) {
-      alert("Selecteer een dashboard");
+      setStatus({ type: 'error', message: 'Selecteer een dashboard.' });
       return;
     }
 
-    const dashboard = filteredDashboards.find(d => d.name === selectedDashboard);
-    if (!dashboard) {
-      alert("Geselecteerd dashboard niet gevonden");
+    if (!selectedDashboardConfig) {
+      setStatus({ type: 'error', message: 'Geselecteerd dashboard niet gevonden.' });
       return;
     }
 
-    setIsLTIDashboard(dashboard.LTI);
-    console.log("Selected Dashboard:", dashboard);
+    try {
+      setIsGenerating(true);
 
-    // Converteer participants naar een array, als het een string is
-    const participantsArray = participants
-      ? participants.split(',').map(name => name.trim())
-      : [];
+      const groups = parseCommaSeparatedValues(groupNames);
+      const participantEmails = selectedDashboardConfig.LTI
+        ? parseParticipantEmails(participants)
+        : [];
 
-    const generatedUrls = await generateUrls(dashboard, groupNames, participantsArray, dashboard.LTI);
-    setCombinedUrls(generatedUrls);
+      if (!selectedDashboardConfig.LTI && groups.length === 0) {
+        setStatus({ type: 'error', message: 'Voer minimaal één groepsnaam in.' });
+        return;
+      }
+
+      if (selectedDashboardConfig.LTI && groups.length === 0) {
+        setStatus({ type: 'error', message: 'Voer een uitvoeringsdatum of label in.' });
+        return;
+      }
+
+      const result = await generateUrls({
+        dashboard: selectedDashboardConfig,
+        groups,
+        participants: participantEmails,
+        isLTIDashboard: selectedDashboardConfig.LTI,
+      });
+
+      setCombinedUrls(result.generatedUrls);
+
+      if (!result.generatedUrls.length) {
+        setStatus({ type: 'error', message: result.error || 'Er konden geen links worden gegenereerd.' });
+        return;
+      }
+
+      if (result.clipboardText) {
+        try {
+          await navigator.clipboard.writeText(result.clipboardText);
+          setStatus({ type: 'success', message: 'Links zijn gegenereerd en gekopieerd.' });
+        } catch {
+          setStatus({
+            type: 'warning',
+            message: 'Links zijn gegenereerd, maar konden niet automatisch worden gekopieerd.',
+          });
+        }
+      }
+
+      if (result.error) {
+        setStatus({ type: 'warning', message: result.error });
+      }
+    } catch (error) {
+      setCombinedUrls([]);
+      setStatus({ type: 'error', message: error.message || 'Er ging iets mis tijdens het genereren.' });
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const clearForm = () => {
@@ -83,6 +94,7 @@ const DashboardForm = () => {
     setParticipants('');
     setSelectedDashboard('');
     setCombinedUrls([]);
+    setStatus({ type: '', message: '' });
   };
 
   const handleShowModal = () => setShowModal(true);
@@ -90,63 +102,35 @@ const DashboardForm = () => {
 
   return (
     <div>
-      {team ? (
+      {!dashboards.length && <p>Geen dashboards beschikbaar voor dit team.</p>}
+
+      {dashboards.length > 0 && (
         <>
-          <FormGroup
-            label="Selecteer Dashboard"
-            id="dashboard"
-            value={selectedDashboard}
-            onChange={(e) => setSelectedDashboard(e.target.value)}
-            type="select"
-            options={filteredDashboards.map(dashboard => ({ label: dashboard.name, value: dashboard.name }))}
-            placeholder="Kies een dashboard uit de lijst."
-            className="mb-3"  // Add Bootstrap margin-bottom class
+          <DashboardSelector
+            dashboards={dashboards}
+            selectedDashboard={selectedDashboard}
+            onChange={(event) => setSelectedDashboard(event.target.value)}
           />
-          
-          {filteredDashboards.find(d => d.name === selectedDashboard)?.LTI ? (
-            
-            <>
-              <FormGroup
-                label="Vul hier uitvoeringsdatum in"
-                id="Uitvoeringsdatum"
-                value={groupNames}
-                onChange={(e) => setGroupNames(e.target.value)}
-                placeholder=""
-              />
-                <FormGroup
-                label="Vul hier de emailadressen in van de deelnemers"
-                id="participants"
-                value={participants}
-                onChange={(e) => setParticipants(e.target.value)}
-                placeholder=""
-              />
-            </>
-          ) : (
-            <FormGroup
-              label="Groepsnaam (of namen)"
-              id="groupNames"
-              value={groupNames}
-              onChange={(e) => setGroupNames(e.target.value)}
-              placeholder="Voer de namen van de groepen in, gescheiden door komma's."
-              inputRef={groupInputRef}
-            />
-          )}
 
-          <button className="btn btn-primary mt-3" onClick={handleGenerateUrls}>
-            Genereer link
-          </button>
+          <DashboardInputFields
+            isLTIDashboard={selectedDashboardConfig?.LTI}
+            groupNames={groupNames}
+            participants={participants}
+            onGroupNamesChange={(event) => setGroupNames(event.target.value)}
+            onParticipantsChange={(event) => setParticipants(event.target.value)}
+          />
 
-          <button className="btn btn-clear mt-3" onClick={clearForm}>
-            Nieuw link maken
-          </button>
-          <Button variant="link" onClick={handleShowModal} style={{ float: 'right', fontSize: '1.5rem', marginRight: '10px' }}>
-            ?
-          </Button>
+          <DashboardStatus status={status} />
+
+          <DashboardActions
+            isGenerating={isGenerating}
+            onGenerate={handleGenerateUrls}
+            onClear={clearForm}
+            onShowManual={handleShowModal}
+          />
 
           {combinedUrls.length > 0 && <DashboardLinkList combinedUrls={combinedUrls} />}
         </>
-      ) : (
-        <TeamDashboardList dashboards={filteredDashboards} />
       )}
 
       <UserManualModal show={showModal} handleClose={handleCloseModal} />

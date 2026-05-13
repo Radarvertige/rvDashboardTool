@@ -1,77 +1,71 @@
+import { sanitizeForKeyword } from './sanitization';
+
 const YOURLS_API_URL = 'https://rdar.nl/yourls-api.php';
-const YOURLS_SIGNATURE = '157448975e';
+const YOURLS_SIGNATURE = process.env.REACT_APP_YOURLS_SIGNATURE || '157448975e';
 
 export const getExistingUrl = async (keyword) => {
   try {
     const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=expand&format=json&shorturl=${encodeURIComponent(keyword)}`;
 
     const response = await fetch(requestUrl);
+
+    if (!response.ok) {
+      throw new Error(`YOURLS expand request failed (${response.status})`);
+    }
+
     const data = await response.json();
 
     if (data && data.longurl) {
       return data.shorturl;
-    } else {
-      console.error("YOURLS API response did not contain a long URL:", data);
-      return null;
     }
+
+    return null;
   } catch (error) {
-    console.error(`Error fetching existing URL:`, error);
     return null;
   }
 };
 
 export const shortenUrl = async (finalUrl, keyword) => {
   try {
-    console.log(`Final URL before shortening: ${finalUrl}`);
-    console.log(`Keyword (Slug) before shortening: ${keyword}`);
-
-    // Check if the short URL already exists
     const existingUrl = await getExistingUrl(keyword);
+
     if (existingUrl) {
-      console.log(`Short URL already exists: ${existingUrl}`);
       return { url: existingUrl, isExisting: true };
     }
 
     const requestUrl = `${YOURLS_API_URL}?signature=${YOURLS_SIGNATURE}&action=shorturl&format=json&url=${encodeURIComponent(finalUrl)}&keyword=${encodeURIComponent(keyword)}`;
 
     const response = await fetch(requestUrl);
+
+    if (!response.ok) {
+      throw new Error(`YOURLS shorturl request failed (${response.status})`);
+    }
+
     const data = await response.json();
 
-    if (data && data.status === "fail" && data.code === "error:keyword") {
-      // If a keyword conflict occurs, get the existing URL
+    if (data && data.status === 'fail' && data.code === 'error:keyword') {
       const existingUrl = await getExistingUrl(keyword);
       const urlToReturn = existingUrl || `https://rdar.nl/${keyword}`;
-      console.warn('Add.');
-      console.log(`URL: ${urlToReturn}`);
       return { url: urlToReturn, isExisting: true };
     }
 
     if (data && data.shorturl) {
       return { url: data.shorturl, isExisting: false };
-    } else {
-      console.error("YOURLS API response did not contain a short URL:", data);
-      return { url: finalUrl, isExisting: false };  // Return the original final URL if shortening fails
     }
+
+    return { url: finalUrl, isExisting: false, error: 'Inkorten van de URL is mislukt.' };
   } catch (error) {
-    console.error(`Error shortening URL:`, error);
-    return { url: finalUrl, isExisting: false };  // Return the original final URL if an error occurs
+    return { url: finalUrl, isExisting: false, error: 'Inkorten van de URL is mislukt.' };
   }
 };
 
 export const generateShortUrl = async (token, dashboard, keyword) => {
   try {
     const combinedUrl = `${dashboard.url}${token}`;
-    const sanitizedKeyword = (keyword || '')
-      .toString()
-      .replace(/[\s-]+/g, '')
-      .toLowerCase();
+    const sanitizedKeyword = sanitizeForKeyword(keyword);
 
-    // Shorten the combined URL using the sanitized keyword
-    const result = await shortenUrl(combinedUrl, sanitizedKeyword);
-    return result;
-
+    return await shortenUrl(combinedUrl, sanitizedKeyword);
   } catch (error) {
-    console.error(`Error generating short URL:`, error);
-    return null;
+    return { url: `${dashboard.url}${token}`, isExisting: false, error: 'Genereren van de korte URL is mislukt.' };
   }
 };

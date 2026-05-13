@@ -1,5 +1,11 @@
 # Getting Started with Create React App
 
+## Project Notes
+
+This project is a dashboard link generator for team-specific LearningPool dashboards.
+
+Known limitation: the current frontend-only setup still exposes dashboard credentials and the YOURLS signing secret to the browser because they are needed client-side. The recent refactor reduces accidental logging and centralizes the data flow, but real secret protection requires a backend or serverless layer.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

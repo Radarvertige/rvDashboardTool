@@ -35,5 +35,23 @@
     width: 50%;
     /* max-width: 800px; */
   }
+
+  .form-status {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+
+  .form-status-error {
+    color: #b42318;
+  }
+
+  .form-status-success {
+    color: #027a48;
+  }
+
+  .form-status-warning {
+    color: #b54708;
+  }
   
   

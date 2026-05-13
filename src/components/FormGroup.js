@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FormGroup({ label, id, value, onChange, placeholder, type = 'text', options = [] }) {
+function FormGroup({ label, id, value, onChange, placeholder, type = 'text', options = [], inputRef }) {
   return (
     <div className="form-group">
       <label htmlFor={id}>{label}</label>
@@ -12,6 +12,7 @@ function FormGroup({ label, id, value, onChange, placeholder, type = 'text', opt
           value={value}
           onChange={onChange}
           placeholder={placeholder}
+          ref={inputRef}
         />
       ) : (
         <select id={id} className="form-control" value={value} onChange={onChange}>

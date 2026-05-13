@@ -6,7 +6,7 @@ function DashboardLinkList({ combinedUrls }) {
     <div className="mt-4">
       <h2>Dashboard links:</h2>
       {combinedUrls.map(({ group, url }) => (
-        <div key={group} className="mb-3">
+        <div key={`${group || 'dashboard'}-${url}`} className="mb-3">
           {group && <h4>Groep: {group}</h4>}
           <a href={url} target="_blank" rel="noopener noreferrer" className="url-link">
             {url}

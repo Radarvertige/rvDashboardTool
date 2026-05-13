@@ -1,66 +1,62 @@
 import { generateToken } from './token';
 import { generateShortUrl } from './url';
+import { sanitizeForKeyword } from './sanitization';
 
-const sanitizeForKeyword = (value = '') => value
-  .toString()
-  .replace(/[\s-]+/g, '')
-  .toLowerCase();
+const formatClipboardEntry = (group, result) => {
+  const prefix = group ? `Groep: ${group}\n` : '';
+  const suffix = result.isExisting
+    ? '\nVoor deze groep is al een link aanwezig in de database, of de slug is al gereserveerd.'
+    : '';
 
-export const generateUrls = async (dashboard, groupNames, participants, isLTIDashboard) => {
-  let generatedUrls = [];
-  let clipboardText = '';
+  return `${prefix}URL: ${result.url}${suffix}`;
+};
 
-  // Groepen van strings verwerken zoals voorheen
-  let groups = groupNames ? groupNames.split(',').map(name => name.trim()) : [];
-  
-  // Gebruik participants direct als array
-  let participantsArray = Array.isArray(participants) ? participants : [];
+export const generateUrls = async ({ dashboard, groups = [], participants = [], isLTIDashboard }) => {
+  const generatedUrls = [];
+  const clipboardEntries = [];
 
-  if (isLTIDashboard && participantsArray.length > 0) {
-    // Voeg 'mailto:' toe aan elke participant email en vervang spaties door komma's
-    participantsArray = participantsArray.join(' ').split(' ').map(email => `mailto:${email.trim()}`);
+  if (!dashboard) {
+    return { generatedUrls, clipboardText: '', error: 'Geen dashboard geselecteerd.' };
+  }
 
-    // Voor het LTI-dashboard: één URL en één token voor alle deelnemers
+  if (isLTIDashboard) {
+    if (!participants.length) {
+      return { generatedUrls, clipboardText: '', error: 'Voer minimaal één deelnemer in.' };
+    }
+
     const teamSlug = sanitizeForKeyword(dashboard.team);
     const groupsSlug = sanitizeForKeyword(groups.join(''));
     const keyword = `${teamSlug}${groupsSlug}`;
-    console.log(`Generated Keyword for LTI Dashboard with Participants: ${keyword}`);
+    const participantsWithMailto = participants.map((email) => `mailto:${email.trim()}`);
 
-    const token = await generateToken(participantsArray, dashboard);
+    const token = await generateToken(participantsWithMailto, dashboard);
     const result = await generateShortUrl(token, dashboard, keyword);
+
     if (result?.url) {
       generatedUrls.push({ group: '', url: result.url, team: dashboard.team, isExisting: result.isExisting });
-      clipboardText += `URL: ${result.url}`;
-      if (result.isExisting) {
-        clipboardText += `\nVoor deze groep is een link reeds aanwezig in de database, of is gereserveerd.`;
-      }
-      clipboardText += '\n\n';
+      clipboardEntries.push(formatClipboardEntry('', result));
     }
   } else {
-    for (let group of groups) {
+    for (const group of groups) {
       if (group) {
         const teamSlug = sanitizeForKeyword(dashboard.team);
         const groupSlug = sanitizeForKeyword(group);
         const keyword = `${teamSlug}${groupSlug}`;
-        console.log(`Generated Keyword for Group: ${keyword}`);
 
         const token = await generateToken(group, dashboard);
         const result = await generateShortUrl(token, dashboard, keyword);
+
         if (result?.url) {
           generatedUrls.push({ group, url: result.url, team: dashboard.team, isExisting: result.isExisting });
-          clipboardText += `Groep: ${group}\nURL: ${result.url}`;
-          if (result.isExisting) {
-            clipboardText += '\nVoor deze groep is een link reeds aanwezig in de database, of is gereserveerd.';
-          }
-          clipboardText += '\n\n';
+          clipboardEntries.push(formatClipboardEntry(group, result));
         }
       }
     }
   }
 
-  navigator.clipboard.writeText(clipboardText).then(() => {
-    alert("Links zijn gekopieerd!");
-  });
-
-  return generatedUrls;
+  return {
+    generatedUrls,
+    clipboardText: clipboardEntries.join('\n\n'),
+    error: generatedUrls.length ? '' : 'Er konden geen links worden gegenereerd.',
+  };
 };

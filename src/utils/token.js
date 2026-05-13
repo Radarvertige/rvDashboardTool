@@ -36,10 +36,7 @@ export const generateToken = async (members, dashboard) => {
     .sign(secretKey);
 
   if (isDebugMode()) {
-    console.log("Token:", token);
-    console.log("Header:", header);
-    console.log("Payload:", JSON.stringify(payload));
-    console.log("Key:", dashboard.key);
+    console.log(`Token generated for dashboard: ${dashboard.name}`);
   }
 
   return token;

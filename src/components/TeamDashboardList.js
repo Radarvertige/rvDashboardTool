@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { normalizeTeamSlug } from '../utils/dashboardData';
 
 const TeamDashboardList = ({ dashboards = [] }) => { // Default to an empty array
   // Group dashboards by team and filter out empty or falsy team names
@@ -21,9 +22,9 @@ const TeamDashboardList = ({ dashboards = [] }) => { // Default to an empty arra
     <>
       <h2>Beschikbare teams:</h2>
       <ul>
-        {nonEmptyTeams.map(team => (
+        {nonEmptyTeams.sort((left, right) => left.localeCompare(right)).map(team => (
           <li key={team}>
-            <Link to={`/${team.replace(/\s+/g, '-')}`}>
+            <Link to={`/${normalizeTeamSlug(team)}`}>
               {team}
             </Link>
           </li>
