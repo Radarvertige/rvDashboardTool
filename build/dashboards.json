@@ -88,7 +88,7 @@
         "LTI": false
     },
     {
-        "name": "HJL - Basis VPD ",
+        "name": "  ",
         "url": "https://insights.learningpool.com/contexts/2082/shared/",
         "key": "ea1d70ad-650c-4758-a674-abe11b334a13",
         "team": "AW",
@@ -116,7 +116,7 @@
         "url": "https://insights.learningpool.com/contexts/2061/shared/",
         "key": "f6365a5c-1bf0-4ff5-b0b8-eca0911e656d",
         "team": "AW",
-        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU1Njl9.z-SAjfNvM2GetZv6Mxj3xoaHpQ_VvlmvdICWShvwQSU",
+        "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU1Njl9.z-SAjfNvM2GetZv6Mxj3 xoaHpQ_VvlmvdICWShvwQSU",
         "LTI": false
     },
     {
@@ -136,7 +136,7 @@
         "LTI": false
     },
     {
-        "name": "NVWA - Professionele Weerbaarheid - Nieuwe toezichthouders",
+        "name": "NVWA - Professionele Weerbaarheid - Dashboard vooor trainers",
         "url": "https://insights.learningpool.com/contexts/2064/shared/",
         "key": "ddba3777-9b98-4428-9a8a-66e1eacefd68",
         "team": "AW",
@@ -163,7 +163,7 @@
         "name": "NVWA - Professionele Weerbaardheid - Veiligheidsdag I.O.D.",
         "url": "https://insights.learningpool.com/contexts/2067/shared/",
         "key": "70b008c1-081b-4141-bbeb-6d7d9af94636",
-        "team": "AW",
+        "team": "",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYxNzl9.P-bI8RcUeT5z0Tfy9WjpyX9gd1ZXHJGcGVPUD1lMHdA",
         "LTI": true
     },
@@ -171,7 +171,7 @@
         "name": "NVWA - Professionele Weerbaardheid - Zitende PPT / Permanante Her en Bijscholing",
         "url": "https://insights.learningpool.com/contexts/2068/shared/",
         "key": "21da2b37-b1f1-4867-8e1c-42c8b822017d",
-        "team": "AW",
+        "team": "",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYyMzZ9.2BY3DnbfuBlzqr62qIzrJ9SXoypBGBazmuSVXTDkuhc",
         "LTI": true
     },
@@ -187,7 +187,7 @@
         "name": "NVWA - Professionele Weerbaardheid - Teamleiders",
         "url": "https://insights.learningpool.com/contexts/2070/shared/",
         "key": "1e292312-e889-4edc-8538-848193af137a",
-        "team": "AW",
+        "team": "",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjYzMjl9.AHEunSFh8gkoIN1mMrKXQOyrYiGEad6iy7QUZ7sdoy8",
         "LTI": true
     },
@@ -211,7 +211,7 @@
         "name": "NVWA- Professionele Weerbaardheid - Alcohol en tabaksteams",
         "url": "https://insights.learningpool.com/contexts/2073/shared/",
         "key": "78586090-6fed-4b6b-bc91-84e6caa4eda8",
-        "team": "AW",
+        "team": "",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY0OTV9.BU7F3IEeVyKxAQCfigVYiqoMQxcduLIw0QFOFNhFUO0",
         "LTI": true
     },
@@ -235,7 +235,7 @@
         "name": "NVWA - Professionele Weerbaardheid - AT Evaluaties",
         "url": "https://insights.learningpool.com/contexts/2076/shared/",
         "key": "2e826a87-b336-4710-9867-4c98a85dc345",
-        "team": "AW",
+        "team": "",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjY3MTV9.nZGkKvFSs-Jdb_FSRM5jTvyWhcDxoV0jL6le9_PAd0s",
         "LTI": false
     },
