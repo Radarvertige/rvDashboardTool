@@ -1,6 +1,6 @@
 [
     {
-        "name": "Utrecht WeI - VPD voor leidinggevenden WeI gemeente ",
+        "name": "Utrecht WenI - VPD voor leidinggevenden WeI gemeente ",
         "url": "https://insights.learningpool.com/contexts/2095/shared/",
         "key": "ee5ba3ef-daef-4e73-9c1a-89deed578929",
         "team": "AW",
@@ -120,10 +120,10 @@
         "LTI": false
     },
     {
-        "name": "Dashboard (14)",
+        "name": "LVVN - Dashboard trainer",
         "url": "https://insights.learningpool.com/contexts/2062/shared/",
         "key": "98d6f4c7-d27d-4c67-8c66-0dadf46589f3",
-        "team": "",
+        "team": "AW",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjU2ODR9.rk_BNyjvAyQxwuSKzicRvyuBcvKBPb2rzklO-TE5GhE",
         "LTI": false
     },
