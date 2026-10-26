@@ -32,10 +32,10 @@
         "LTI": false
     },
     {
-        "name": "HOA - Antwoorden op vragen",
+        "name": "BGHU trainers",
         "url": "https://insights.learningpool.com/contexts/2090/shared/",
         "key": "39364bb6-553a-4f71-822a-84c169294427",
-        "team": "LEV",
+        "team": "AW",
         "token": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTc0MjgwNjl9.jCFMfgs9ELogLwXIgcqfrZujfxWhXEcMLyX9gyEyx2E",
         "LTI": false
     },
